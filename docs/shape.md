@@ -1,9 +1,9 @@
  This is document for shape
 
 * contents
-  |how_to_shape| --- literally
-    -- |how_they_get_shaped| --- how they get shaped
-    -- |basic_idea_of_shaping| --- basement idea.
+  |how-to-shape| --- literally
+    -- |how-they-get-shaped| --- how they get shaped
+    -- |basic-idea-of-shaping| --- basement idea.
     -- |parameters| --- all parameters to shape
   |shape|  --- all shapes already avilable
 
@@ -47,12 +47,12 @@
 
       this is the simplest shape.
 
-         .----------.                 |looks like: rectangular
-         /         /|                 |scale:      10x5x10 blocks
-        /         / |                 |color:      default_color
-       /         /  |
-       ----------   |
+           _________.                 | looks like: rectangular
+          /        /|                 | scale:      10x5x10 blocks
+         /        / |                 | color:      default_color
+        /        /  |
+       /--------/   |
+       |        |   /
        |        |  /
        |        | /
-       |        |/
-       .---------
+       ----------/
