@@ -1,6 +1,6 @@
 日本語はこちら -> [JP_README.md](https://github.com/Cj-bc/mcUI/blob/master/JP_README.md)
 
-*CAUTION* THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
+* CAUTION * THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
 
 # overview
 
@@ -23,9 +23,9 @@
 
   You'll need
 
-    * [minecraft](https://minecraft.net)
-    * [minecraft forge](https://files.minecraftforge.net)
-    * [Minecraft Jam mod](https://github.com/arpruss/raspberryjammod)
+  * [minecraft](https://minecraft.net)
+  * [minecraft forge](https://files.minecraftforge.net)
+  * [Minecraft Jam mod](https://github.com/arpruss/raspberryjammod)
 
   Version isn't matter if all versions are the same
 
