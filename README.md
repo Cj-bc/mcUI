@@ -1,4 +1,4 @@
-日本語はこちら ->
+日本語はこちら -> [JP_README.md](https://github.com/Cj-bc/mcUI/blob/master/JP_README.md)
 *CAUTION* THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
 
 # overview
