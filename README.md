@@ -1,11 +1,11 @@
 日本語はこちら -> [JP_README.md](https://github.com/Cj-bc/mcUI/blob/master/JP_README.md)
 
-* CAUTION * THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
+**CAUTION** THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
 
 # overview
 
   This is THE FIRST 3DUI using Minecraft!!
-  *caution* this is minecraft mod.
+  **caution** this is minecraft mod.
 
 # what's this!?
 
@@ -39,13 +39,13 @@
 
 I'm not sure I'll make them
 
-  [ ] COmplete REDING part
-  [ ] Enable to edit,write,create
-  [ ] Enable to access applications
-  [ ] Enable to get notifications
-  [ ] Enable to use in server
-  [ ] Enable to do multi
-  [ ] Wanna join VRChat server
-  [ ] Replace dependences with my own making
-  [ ] Enable to exchange files,datas
-  [x] Need SUSHI
+-  [ ] COmplete REDING part
+-  [ ] Enable to edit,write,create
+-  [ ] Enable to access applications
+-  [ ] Enable to get notifications
+-  [ ] Enable to use in server
+-  [ ] Enable to do multi
+-  [ ] Wanna join VRChat server
+-  [ ] Replace dependences with my own making
+-  [ ] Enable to exchange files,datas
+-  [x] Need SUSHI
