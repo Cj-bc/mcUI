@@ -4,33 +4,41 @@ English -> [README.md](https://github.com/Cj-bc/mcUI/blob/master/README.md)
 正規バージョンになった後でもそうですが、このmod(?)は*あなたのパソコンを破壊する恐れすらあります*。自己責任でお使いください。
 現段階、そして編集機能がつくまではその危険度は低いですが、ご了承ください。
 
-#概要
+# 概要
+
   mcUIは(恐らく)世界初の! パソコンに3DUIを提供するminecraftのmodです。
   何を言ってるのかわからない？
   ならここにある（予定）の動画を見てくれ！！（未定）
 
 
 # なんだこれは
+
   mcUIはMinecraftのmodです。
   でもただのmodじゃありません。
   mcUIは、3DになったパソコンのUIを提供する（多分）唯一のmodです！！！
 
 # 特徴
+
   * CUIをGUI、そしてmcUIへ-- 次世代型（ぽい）3DのUIを提供します（でも開発者はCUIが好きです）
   * Minecraftのmodとしては特異なることとして、(Jam modが動作すれば)マイクラのバージョンなんざ関係ありません！
 
 # 必要なものたち
+
   上記の通り、バージョンは統一してあれば問題ありません！
+
     * [minecraft](https://minecraft.net)
     * [minecraft forge](https://files.minecraftforge.net)
     * [Minecraft Jam mod](https://github.com/arpruss/raspberryjammod)
 
 # いんすとーるぅ
+
   今現在インストール方法はありません（だって出来上がってないんだもの）
   のちには、homebrewに対応させようかなとか思ってます。
 
 # (無謀な)今後について
+
 実現するとは言ってないが、やりたい事たち
+
   [ ] とりあえず、読み込み部分を完成させる
   [ ] 書き込みができるようにする
   [ ] アプリケーションにアクセスできるようにする
