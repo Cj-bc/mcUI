@@ -26,9 +26,9 @@ English -> [README.md](https://github.com/Cj-bc/mcUI/blob/master/README.md)
 
   上記の通り、バージョンは統一してあれば問題ありません！
 
-    * [minecraft](https://minecraft.net)
-    * [minecraft forge](https://files.minecraftforge.net)
-    * [Minecraft Jam mod](https://github.com/arpruss/raspberryjammod)
+  * [minecraft](https://minecraft.net)
+  * [minecraft forge](https://files.minecraftforge.net)
+  * [Minecraft Jam mod](https://github.com/arpruss/raspberryjammod)
 
 # いんすとーるぅ
 
