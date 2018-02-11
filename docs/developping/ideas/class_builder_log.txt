@@ -1,0 +1,14 @@
+
+  *Description*
+      This class build visualized directories and
+      files themselves.
+
+  *Method*
+
+      __init__(self,world)   get mc.Minecraft instance
+      buildir(path)          bulid directory
+      buildfile(path)        build file
+
+===========================================================
+Vim: set filetype=help:
+Vim: set tags=./.tags/discussion_about_shape_func2.tags

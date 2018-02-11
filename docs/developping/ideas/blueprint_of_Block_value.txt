@@ -1,0 +1,62 @@
+mcUI            Blueprint of "Block" value                    2018/02/06
+
+  ___4____                __
+1 |______|____________   |__|
+  |                  |   |  |         use turtle?
+  |                  |   |  |
+5 |                  |   |  |
+  |                  |   |  |   can I use world data?
+  |__________________|   |__|
+  ________10__________    1
+  |__________________|
+
+
+method
+  * Decrease --- set larger cube,and cut surplus
+  * Increase --- devide into some rectangulars
+
+    Decrease            |   Increase
+   --------------------------------------------
+     can be slower      | Don't take waste time
+    Good for big one    |
+                        | Good for simple one
+
+                Can I use both side?
+
+
+          Faster is better  --> Increase
+
+
+|Increase|                      |-------- would be upper corner of WENS
+  * have to set start point (0,0,0)
+
+  * For each "Block", there are
+     - distance from start point (like [1,0,-1] )
+     - scale [x,y,x]
+     - Block ID (like DIAMOND_ORE)
+     - Data value (optional,for colors,etc)
+
+  * Syntax  - List of List
+
+      [ [dist_x,dist_y,dist_z],[x,y,z],Block ID,data value ]
+
+      Which:
+        dist_x,dist_y,dist_z: distance from startpoint.Integer.
+                       x,y,z: scale.Integer.
+                    Block ID: Block ID to build the shape
+                  data value: optional.Used to select colors,etc.Integer.
+
+
+|example|
+
+    class shape:
+
+      def test_shape:
+        block
+
+
+
+
+===========================================================
+Vim: set filetype=help:
+Vim: set tags=./.tags/blueprint_of_Block_value.tags

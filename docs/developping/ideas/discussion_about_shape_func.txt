@@ -1,0 +1,55 @@
+
+|problem|
+  * the method is now static
+  * make it clear whether it's problem or not.
+
+
+  should "shape" class be static?
+  when "builder" use "shape" class, only one method will be executed
+
+                call(name)
+    |builder| --------------> |shape|
+      ^--------------------------|
+          return(named shape)
+
+  I can do it in initialize class!
+  I mean,
+
+    1. main.py is executed
+    2. Initialize.__init__() called
+    3. Inside, make instance of |builder|
+    4. Making it, get needed shape object
+    5. set builder's values using shape's
+
+
+  One point to care is, list gives reference to access itself,
+  instead of its copy of value in Python.
+  It means
+    a = [ 1,2,3,4 ]
+    b = a
+    a.append("5")
+    puts a,b
+    #=> [ 1,2,3,4,5 ][ 1,2,3,4,5 ]
+  
+  Why is it so problem? easy.
+  I'll use "shape" class twice, once for directory,once for files.
+  When I "shape" files, the list passed to directory
+  might be canged and replaced with file's one,
+
+    |builder|                                       |shape|
+
+        directory = shape(default)              make
+            ^           ^return               |-------> blocks
+            |           |---shape.__init__()--|     ------|
+            |                         ^-------------|     ^
+            |                             return          | make
+            |------------------------------------------<--|
+                      also, make change?                  |
+                                                          |
+        file = shape(default)                             |
+                                                          |
+                            shape.__init__()--------------|
+
+===========================================================
+Vim: set filetype=help:
+Vim: set tags=./.tags/discussion_about_shape_func.tags

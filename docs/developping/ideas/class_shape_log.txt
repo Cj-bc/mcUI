@@ -1,0 +1,34 @@
+mcUI          Log/ class shape                               2018/02/06
+-------
+
+Why don't we use superclass?
+
+Can't set severeal "block" args.
+But it's looked good if
+    Block ~
+    Block ~
+can be done
+    => Let's make "block" method
+
+Name a new class as |shape_func|
+and write shape class like
+    class shape(shape_func):
+
+What will be appended are:
+    * block method
+    * blocks List
+
+
+Let's move on"block" method
+This aims to:
+    * make blocks list from argunments
+
+
+WAIT.I forgot each method is STATIC.
+If I chagne blocks, all things that
+already passed to builder might be changed.
+
+
+===========================================================
+Vim: set filetype=help:
+Vim: set tags=./.tags/class_shape_log.tags

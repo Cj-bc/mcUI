@@ -1,0 +1,25 @@
+
+  To avoid confusing, I should get the value and
+  make a new data from it.
+  I mean
+
+    1. execute "directory = shape(default)"
+    2. shape.__init__(default)
+    3. block method called
+    4. Make a new instance of shape class
+
+  Hmm...
+  It seems to be solved by making instance.
+  No need to make it as static!
+  That's all. Done.
+
+
+
+*summary*                             added: 2018/02/11 11:39
+
+  * make instance of "shape" class, when "builder" instance is made
+
+
+===========================================================
+Vim: set filetype=help:
+Vim: set tags=./.tags/discussion_about_shape_func2.tags
