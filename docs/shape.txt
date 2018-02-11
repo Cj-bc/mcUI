@@ -11,18 +11,18 @@
 
 
 
-                      *how to shape*
+                      *how-to-shape*
    Instead of using default shapes, you can use your own shapes
   for directory and files.
    Here're simple reference for it.
 
-    *how they get shaped*
+    *how-they-get-shaped*
         shapes are defined in *shape* class
         each methods in it is the blueprint for each shape
         in *builder* class, at *builddir* and *buildfile* method,
         they get shaped
         
-    *Basic Idea of shaping*
+    *Basic-Idea-of-shaping*
        As avilable API to put block is only setBlock() and setBlocks(),
       What we can shape is based rectangular and dots.
       Basically, all things are devided into some rectangulars. 
@@ -32,7 +32,7 @@
         blocks --- devided rectangular shapes
                    if there some rec.s, you can use this as List of List
                    usage:
-                     blocks = [[x1,y1,z1],[x2,y2,z2]..]
+                     blocks = [block1,block2,..]
 
 
 
