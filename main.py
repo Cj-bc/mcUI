@@ -13,5 +13,3 @@ world = Minecraft() # connect to minecraft
 
 # initialize
 initialize.initialize.playerinit(world)
-
-
