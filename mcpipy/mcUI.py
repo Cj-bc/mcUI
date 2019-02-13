@@ -26,8 +26,8 @@ def get_pwd_ls():
 def get_schemas():
     """get list of blocks for each filetype
     """
-    schema = [{"file": block.WOOL},
-              {"dir": block.IRON_BLOCK}]
+    schema = {"file": block.WOOL,
+              "dir": block.IRON_BLOCK}
     return schema
 
 
@@ -38,12 +38,12 @@ def write_pwd_ls(start_pos):
     schemas = get_schemas()
     counter = 0
     for obj in ls:
-        if obj.type == "file":
+        if obj["type"] == "file":
             mc.setBlock(start_pos.x + counter*3, start_pos.y,
-                        start_pos.z, schemas.file)
-        elif obj.type == "dir":
+                        start_pos.z, schemas["file"])
+        elif obj["type"] == "dir":
             mc.setBlock(start_pos.x + counter*3, start_pos.y,
-                        start_pos.z, schemas.dir)
+                        start_pos.z, schemas["dir"])
 
         counter += 1
 
