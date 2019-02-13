@@ -1,4 +1,5 @@
-import mcpi.minercraft as minecraft
+
+import mcpi.minecraft as minecraft
 import mcpi.block as block
 # import mcpi.entity as entity
 from mcpi.vec3 import Vec3
