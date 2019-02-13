@@ -53,6 +53,6 @@ initialPlayerPos = mc.player.getPos()
 objstartPos = Vec3(initialPlayerPos.x + 5,
                    initialPlayerPos.y, initialPlayerPos.z)
 
-mc.postToChat(f"pwd: {pwd}")
+mc.postToChat(f'pwd: {pwd}')
 
 write_pwd_ls(objstartPos)
