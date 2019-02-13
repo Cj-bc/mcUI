@@ -5,10 +5,6 @@ import mcpi.block as block
 from mcpi.vec3 import Vec3
 import os
 
-mc = minecraft.Minecraft()
-pwd = os.getcwd()
-
-
 def get_pwd_ls():
     """get current directory's entries and return list
     """
@@ -47,6 +43,10 @@ def write_pwd_ls(start_pos):
 
         counter += 1
 
+
+
+mc = minecraft.Minecraft()
+pwd = os.getcwd()
 
 # get player's position.
 initialPlayerPos = mc.player.getPos()
