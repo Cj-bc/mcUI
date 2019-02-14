@@ -24,6 +24,7 @@ def get_schemas():
         Return:
             schema (dict): key is "filetype", value is "block"
     """
+    # TODO: remove this hardcoded data scheme
     schema = {"file": block.WOOL,
               "dir": block.IRON_BLOCK,
               "unknown": block.DIRT}
@@ -45,6 +46,7 @@ def ls(path):
     ret = []
     with os.scandir(path) as it:
         for f in it:
+            # TODO: remove this hardcoded data scheme
             if f.is_file():
                 ret += [{"type": "file", "name": f.name}]
             elif f.is_dir():
