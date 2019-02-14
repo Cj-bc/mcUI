@@ -16,6 +16,8 @@ from mcpi.vec3 import Vec3
 import os
 
 
+# functions {{{
+# get_schemas() {{{2
 def get_schemas():
     """get list of blocks for each filetype
 
@@ -29,8 +31,10 @@ def get_schemas():
               "dir": block.IRON_BLOCK,
               "unknown": block.DIRT}
     return schema
+# }}}
 
 
+# ls(path) {{{2
 def ls(path):
     """get current directory's entries and return list
 
@@ -55,10 +59,13 @@ def ls(path):
                 ret += [{"type": "unknown", "name": f.name}]
 
     return ret
+# }}}
 
 
+# write_files(start_pos, files) {{{2
 def write_files(start_pos, files):
     """write "files" file entries to minecraft world
+        Number of objects lay in one line is defined as MAX_OBJECT_PER_LINE
 
         Args:
             start_pos (vec3.Vec3): vec3 object which points the first position to generate
@@ -74,6 +81,8 @@ def write_files(start_pos, files):
 
         counter += 1
 
+# }}}
+# }}}
 
 
 mc = minecraft.Minecraft()
