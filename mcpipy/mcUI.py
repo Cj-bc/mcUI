@@ -1,4 +1,3 @@
-
 import mcpi.minecraft as minecraft
 import mcpi.block as block
 # import mcpi.entity as entity
@@ -7,6 +6,11 @@ import os
 
 def get_pwd_ls():
     """get current directory's entries and return list
+
+       Args:
+            no args
+       Return:
+            pwd_file_list (list of dict): list of current directory's entries.
     """
     ret = []
     with os.scandir(os.getcwd()) as it:
@@ -21,6 +25,11 @@ def get_pwd_ls():
 
 def get_schemas():
     """get list of blocks for each filetype
+
+        Args:
+            no args
+        Return:
+            schema (dict): key is "filetype", value is "block"
     """
     schema = {"file": block.WOOL,
               "dir": block.IRON_BLOCK}
@@ -29,6 +38,11 @@ def get_schemas():
 
 def write_pwd_ls(start_pos):
     """write current directory's entries to minecraft world
+
+        Args:
+            start_pos (vec3.Vec3): vec3 object which points the first position to generate
+        Return:
+            no return
     """
     ls = get_pwd_ls()
     schemas = get_schemas()
