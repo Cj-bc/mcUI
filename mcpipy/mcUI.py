@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+#
+# mcUI --- minecraft based 3D UI for *nix
+#
+# copyright (c) 2019 Cj-bc a.k.a Cj.bc_sd
+#
+# (@) version: 0.0.1
+# (@) usage:
+# (@)   run this script while Minecraft is running.
+
+
 import mcpi.minecraft as minecraft
 import mcpi.block as block
 # import mcpi.entity as entity
