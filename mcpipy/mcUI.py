@@ -81,13 +81,18 @@ def write_files(start_pos, files):
             no return
     """
     schemas = get_schemas()
-    counter = 0
-    for obj in files:
-        mc.setBlock(start_pos.x + counter*3, start_pos.y,
-                    start_pos.z, schemas[obj["type"]])
+
+    # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
+    lines = [files[i:i+MAX_OBJECT_PER_LINE]
+            for i in range(0,len(files), MAX_OBJECT_PER_LINE)]
+    for index_line, a_line in enumerate(lines):
+        for index_row, obj in enumerate(a_line):
+            # TODO: should i make function?
+            # TODO: I'm not sure whether this code works
+            mc.setBlock(start_pos.x + index_row * padding.x + index_line * line_vec.x, start_pos.y + index_row * padding.y + index_line * line_vec.y,
+                        start_pos.z + index_row * padding.z + index_line * line_vec.z, schemas[obj["type"]])
 
         counter += 1
-
 # }}}
 # }}}
 
