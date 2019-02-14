@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # [version] - YYYY/MM/DD
 
+# 0.0.2 - 2019/02/14
+## Changed
+	* Improve code quality
+
+
 # 0.0.1 - 2019/02/14
 ## Added
 	* set blocks in Minecraft based on pwd's files
