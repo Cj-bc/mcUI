@@ -16,7 +16,7 @@ from mcpi.vec3 import Vec3
 import os
 
 # configs(should be in config.py) {{{
-mergin = Vec3(5, 0, 0) # mergin from player position to center of objects' spawing place
+mergin = 5 # mergin from player position to center of objects' spawing place
 padding = Vec3(3, 0, 0) # padding between each objects
 line_vec = Vec3(0, 3, 0) # vector to define which axis should objects follow
 MAX_OBJECT_PER_LINE = 6 # how much objects could be in one line?
@@ -148,7 +148,7 @@ def write_files(start_pos, face_to, files):
 mc = minecraft.Minecraft()
 pwd = os.getcwd()
 
-spawn_object_criteria = mc.player.getPos() + mergin
+spawn_object_criteria = mc.player.getPos()
 spawn_object_direction_criteria = direction(mc.player.getRotation())
 
 mc.postToChat(f'pwd: {pwd}')
