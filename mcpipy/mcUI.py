@@ -105,6 +105,28 @@ def write_files(start_pos, face_to, files):
     """
     schemas = get_schemas()
 
+    if face_to == "north":
+        coordinate_list = [ [start_pos.x, padding.x, line_vec.x],
+                            [start_pos.y, padding.y, line_vec.y],
+                            [start_pos.z + mergin, padding.z, line_vec.z]
+                          ]
+    elif face_to == "east":
+        coordinate_list = [ [start_pos.z, padding.z, line_vec.z],
+                            [start_pos.y, padding.y, line_vec.y],
+                            [start_pos.x  + mergin, padding.x, line_vec.x]
+                          ]
+    elif face_to == "south":
+        coordinate_list = [ [start_pos.x, padding.x, line_vec.x],
+                            [start_pos.y, padding.y, line_vec.y],
+                            [start_pos.z - mergin, padding.z, line_vec.z]
+                          ]
+    elif face_to == "west":
+        coordinate_list = [ [start_pos.z, padding.z, line_vec.z],
+                            [start_pos.y, padding.y, line_vec.y],
+                            [start_pos.x - mergin, padding.x, line_vec.x]
+                          ]
+
+
     # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
     lines = [files[i:i+MAX_OBJECT_PER_LINE]
             for i in range(0,len(files), MAX_OBJECT_PER_LINE)]
@@ -112,8 +134,13 @@ def write_files(start_pos, face_to, files):
         for index_row, obj in enumerate(a_line):
             # TODO: should i make function?
             # TODO: I'm not sure whether this code works
-            mc.setBlock(start_pos.x + index_row * padding.x + index_line * line_vec.x, start_pos.y + index_row * padding.y + index_line * line_vec.y,
-                        start_pos.z + index_row * padding.z + index_line * line_vec.z, schemas[obj["type"]])
+            mc.setBlock(coordinate_list[0][0] + index_row * coordinate_list[0][1] \
+                                              + index_line * coordinate_list[0][2],
+                        coordinate_list[1][0] + index_row * coordinate_list[1][1] \
+                                              + index_line * coordinate_list[1][2],
+                        coordinate_list[2][0] + index_row * coordinate_list[2][1] \
+                                              + index_line * coordinate_list[2][2],
+                        schemas[obj["type"]])
 # }}}
 # }}}
 
