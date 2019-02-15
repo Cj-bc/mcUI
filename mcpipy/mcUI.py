@@ -69,6 +69,28 @@ def ls(path):
 # }}}
 
 
+def direction(rot):
+    """ Convert Rotation data (comes from player.getRotation) into direction.
+
+        Args:
+            rot (floot): Rotation. Comes from minecraft.Minecraft().player.getRotation()
+
+        Return:
+            direction (string): direction of 'rot'. One of north/south/east/west
+    """
+    if -180.00 <= rot < -135.00:
+        return "north"
+    elif -135.00 <= rot < -45.00:
+        return "east"
+    elif -45.00 < rot <= 45.00:
+        return "south"
+    elif 45.00 <= rot < 135.00:
+        return "west"
+    elif 135.00 <= rot < 180.00:
+        return "north"
+    else:
+        return ""
+
 # write_files(start_pos, files) {{{2
 def write_files(start_pos, files):
     """write "files" file entries to minecraft world
