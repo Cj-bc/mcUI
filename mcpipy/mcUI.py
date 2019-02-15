@@ -91,8 +91,6 @@ def write_files(start_pos, files):
             # TODO: I'm not sure whether this code works
             mc.setBlock(start_pos.x + index_row * padding.x + index_line * line_vec.x, start_pos.y + index_row * padding.y + index_line * line_vec.y,
                         start_pos.z + index_row * padding.z + index_line * line_vec.z, schemas[obj["type"]])
-
-        counter += 1
 # }}}
 # }}}
 
