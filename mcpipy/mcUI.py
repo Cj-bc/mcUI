@@ -121,9 +121,9 @@ def write_files(start_pos, face_to, files):
 mc = minecraft.Minecraft()
 pwd = os.getcwd()
 
-Spawn_object_criteria = mc.player.getPos() + mergin
+spawn_object_criteria = mc.player.getPos() + mergin
 spawn_object_direction_criteria = direction(mc.player.getRotation())
 
 mc.postToChat(f'pwd: {pwd}')
 
-write_files(Spawn_object_criteria, spawn_object_direction_criteria,ls(pwd))
+write_files(spawn_object_criteria, spawn_object_direction_criteria,ls(pwd))
