@@ -69,6 +69,7 @@ def ls(path):
 # }}}
 
 
+# direction(rot) {{{2
 def direction(rot):
     """ Convert Rotation data (comes from player.getRotation) into direction.
 
@@ -90,6 +91,8 @@ def direction(rot):
         return "north"
     else:
         return ""
+# }}}
+
 
 # write_files(start_pos, files) {{{2
 def write_files(start_pos, face_to, files):
@@ -153,4 +156,5 @@ spawn_object_direction_criteria = direction(mc.player.getRotation())
 
 mc.postToChat(f'pwd: {pwd}')
 
+# TODO: WIP
 write_files(spawn_object_criteria, spawn_object_direction_criteria,ls(pwd))
