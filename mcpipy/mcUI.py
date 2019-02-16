@@ -113,21 +113,25 @@ def write_files(start_pos, face_to, files):
                             [padding.y, line_vec.y],
                             [padding.z, line_vec.z]
                           ]
+        current_margin = Vec3(0, 0, -margin)
     elif face_to == "east":
         coordinate_list = [ [padding.z, line_vec.z],
                             [padding.y, line_vec.y],
                             [padding.x, line_vec.x]
                           ]
+        current_margin = Vec3(-margin, 0, 0)
     elif face_to == "south":
         coordinate_list = [ [padding.x, line_vec.x],
                             [padding.y, line_vec.y],
                             [padding.z, line_vec.z]
                           ]
+        current_margin = Vec3(0, 0, margin)
     elif face_to == "west":
         coordinate_list = [ [padding.z, line_vec.z],
                             [padding.y, line_vec.y],
                             [padding.x, line_vec.x]
                           ]
+        current_margin = Vec3(-margin, 0, 0)
 
 
     # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
@@ -137,9 +141,12 @@ def write_files(start_pos, face_to, files):
         for index_row, obj in enumerate(a_line):
             # TODO: should i make function?
             # TODO: I'm not sure whether this code works
-            mc.setBlock(start_pos.x + index_row * coordinate_list[0][0] + index_line * coordinate_list[0][1],
-                        start_pos.y + index_row * coordinate_list[1][0] + index_line * coordinate_list[1][1],
-                        start_pos.z + index_row * coordinate_list[2][0] + index_line * coordinate_list[2][1],
+            mc.setBlock(start_pos.x + current_margin.x + index_row * coordinate_list[0][0]
+                                                       + index_line * coordinate_list[0][1],
+                        start_pos.y + current_margin.y + index_row * coordinate_list[1][0]
+                                                       + index_line * coordinate_list[1][1],
+                        start_pos.z + current_margin.z + index_row * coordinate_list[2][0]
+                                                       + index_line * coordinate_list[2][1],
                         schemas[obj["type"]])
 # }}}
 # }}}
