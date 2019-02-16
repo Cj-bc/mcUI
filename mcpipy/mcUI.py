@@ -139,8 +139,7 @@ def write_files(start_pos, face_to, files):
             for i in range(0,len(files), MAX_OBJECT_PER_LINE)]
     for index_line, a_line in enumerate(lines):
         for index_row, obj in enumerate(a_line):
-            # TODO: should i make function?
-            # TODO: I'm not sure whether this code works
+            # I think it's not a good idea to apply margin here. But I have no idea other than that for now
             mc.setBlock(start_pos.x + current_margin.x + index_row * coordinate_list[0][0]
                                                        + index_line * coordinate_list[0][1],
                         start_pos.y + current_margin.y + index_row * coordinate_list[1][0]
