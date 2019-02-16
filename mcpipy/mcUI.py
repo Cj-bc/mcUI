@@ -108,6 +108,10 @@ def write_files(start_pos, face_to, files):
     """
     schemas = get_schemas()
 
+    # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
+    lines = [files[i:i+MAX_OBJECT_PER_LINE]
+            for i in range(0,len(files), MAX_OBJECT_PER_LINE)]
+
     if face_to == "north":
         coordinate_list = [ [padding.x, line_vec.x],
                             [padding.y, line_vec.y],
@@ -134,9 +138,8 @@ def write_files(start_pos, face_to, files):
         current_margin = Vec3(-margin, 0, 0)
 
 
-    # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
-    lines = [files[i:i+MAX_OBJECT_PER_LINE]
-            for i in range(0,len(files), MAX_OBJECT_PER_LINE)]
+
+
     for index_line, a_line in enumerate(lines):
         for index_row, obj in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
