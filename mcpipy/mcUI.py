@@ -71,7 +71,7 @@ def ls(path):
 
 # direction(rot) {{{2
 def direction(rot):
-    """ Convert Rotation data (comes from player.getRotation) into direction.
+    """ Convert Rotation data (comes from player.getRotation) into Player's direction.
 
         Args:
             rot (floot): Rotation. Comes from minecraft.Minecraft().player.getRotation()
