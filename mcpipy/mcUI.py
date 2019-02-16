@@ -16,7 +16,7 @@ from mcpi.vec3 import Vec3
 import os
 
 # configs(should be in config.py) {{{
-mergin = 5 # mergin from player position to center of objects' spawing place
+margin = 5 # mergin from player position to center of objects' spawing place
 padding = Vec3(3, 0, 0) # padding between each objects
 line_vec = Vec3(0, 0, 3) # vector to define which axis should objects follow
 MAX_OBJECT_PER_LINE = 6 # how much objects could be in one line?
