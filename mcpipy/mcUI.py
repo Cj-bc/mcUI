@@ -119,7 +119,7 @@ def write_files(start_pos, face_to, files):
                             [padding.y, line_vec.y],
                             [padding.x, line_vec.x]
                           ]
-        current_margin = Vec3(-margin, 0, 0)
+        current_margin = Vec3(margin, 0, 0)
     elif face_to == "south":
         coordinate_list = [ [padding.x, line_vec.x],
                             [padding.y, line_vec.y],
