@@ -117,24 +117,40 @@ def write_files(start_pos, face_to, files):
                             [padding.y, line_vec.y],
                             [padding.z, line_vec.z]
                           ]
+        # TODO: Should be fixed when each object shape is no longer one block.
+        #       Current script doesn't consider the size of each object
+        oneline_length = (len(lines[0]) -1) * coordinate_list[0][0] + 1
+        adjusted_pos = Vec3(start_pos.x - int(oneline_length /2), start_pos.y, start_pos.z)
         current_margin = Vec3(0, 0, -margin)
     elif face_to == "east":
         coordinate_list = [ [padding.z, line_vec.z],
                             [padding.y, line_vec.y],
                             [padding.x, line_vec.x]
                           ]
+        # TODO: Should be fixed when each object shape is no longer one block.
+        #       Current script doesn't consider the size of each object
+        oneline_length = (len(lines[0]) -1) * coordinate_list[2][0] + 1
+        adjusted_pos = Vec3(start_pos.x, start_pos.y, start_pos.z - int(oneline_length /2))
         current_margin = Vec3(margin, 0, 0)
     elif face_to == "south":
         coordinate_list = [ [padding.x, line_vec.x],
                             [padding.y, line_vec.y],
                             [padding.z, line_vec.z]
                           ]
+        # TODO: Should be fixed when each object shape is no longer one block.
+        #       Current script doesn't consider the size of each object
+        oneline_length = (len(lines[0]) -1) * coordinate_list[0][0] + 1
+        adjusted_pos = Vec3(start_pos.x - int(oneline_length /2), start_pos.y, start_pos.z)
         current_margin = Vec3(0, 0, margin)
     elif face_to == "west":
         coordinate_list = [ [padding.z, line_vec.z],
                             [padding.y, line_vec.y],
                             [padding.x, line_vec.x]
                           ]
+        # TODO: Should be fixed when each object shape is no longer one block.
+        #       Current script doesn't consider the size of each object
+        oneline_length = (len(lines[0]) -1) * coordinate_list[2][0] + 1
+        adjusted_pos = Vec3(start_pos.x, start_pos.y, start_pos.z - int(oneline_length /2))
         current_margin = Vec3(-margin, 0, 0)
 
 
@@ -143,11 +159,11 @@ def write_files(start_pos, face_to, files):
     for index_line, a_line in enumerate(lines):
         for index_row, obj in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
-            mc.setBlock(start_pos.x + current_margin.x + index_row * coordinate_list[0][0]
+            mc.setBlock(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
                                                        + index_line * coordinate_list[0][1],
-                        start_pos.y + current_margin.y + index_row * coordinate_list[1][0]
+                        adjusted_pos.y + current_margin.y + index_row * coordinate_list[1][0]
                                                        + index_line * coordinate_list[1][1],
-                        start_pos.z + current_margin.z + index_row * coordinate_list[2][0]
+                        adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
                                                        + index_line * coordinate_list[2][1],
                         schemas[obj["type"]])
 # }}}
