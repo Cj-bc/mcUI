@@ -1,5 +1,7 @@
 日本語はこちら -> [JP_README.md](https://github.com/Cj-bc/mcUI/blob/master/JP_README.md)
 
+[![tipmona](https://img.shields.io/badge/tipme-%40tipmona-orange.svg)](https://twitter.com/share?text=%40tipmona%20tip%20%40Cj-bc%2011.7)  [![monya/mona](https://img.shields.io/badge/tipme-%40monya/mona-orange.svg)](https://monya-wallet.github.io/a/?address=MBdCkYyfTsCxtm1wZ1XyKWNLFLYj8zMK3V&scheme=monacoin)  [![tipkotone](https://img.shields.io/badge/tipme-%40tipkotone-orange.svg)](https://twitter.com/share?text=%40tipkotone%20tip%20%40Cj-bc%2011.7)
+
 **CAUTION** THIS IS HARDLY UNDER DEPELOPMENT.This could break your computer, so please use on your own risk.
 
 # overview
