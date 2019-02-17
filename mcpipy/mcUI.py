@@ -11,7 +11,7 @@
 
 import mcpi.minecraft as minecraft
 import mcpi.block as block
-# import mcpi.entity as entity
+import mcpi.entity as entity
 from mcpi.vec3 import Vec3
 import os
 
@@ -159,13 +159,15 @@ def write_files(start_pos, face_to, files):
     for index_line, a_line in enumerate(lines):
         for index_row, obj in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
-            mc.setBlock(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
-                                                       + index_line * coordinate_list[0][1],
-                        adjusted_pos.y + current_margin.y + index_row * coordinate_list[1][0]
-                                                       + index_line * coordinate_list[1][1],
-                        adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
-                                                       + index_line * coordinate_list[2][1],
-                        schemas[obj["type"]])
+            spawn_pos = Vec3(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
+                                                               + index_line * coordinate_list[0][1],
+                                adjusted_pos.y + current_margin.y + index_row * coordinate_list[1][0]
+                                                               + index_line * coordinate_list[1][1],
+                                adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
+                                                               + index_line * coordinate_list[2][1] )
+            mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[obj["type"]])
+            file_name = obj["name"]
+            mc.spawnEntity(entity.ARMORSTAND, spawn_pos, '{CustomName: ' + file_name + ', CustomNameVisible: true, NoGravity: true}')
 # }}}
 # }}}
 
