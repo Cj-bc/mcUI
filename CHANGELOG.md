@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # [version] - YYYY/MM/DD
 
+# 0.1.0 - 2019/02/17
+## Added
+	* Spawn objects in front of user
+	* Adjust coordinate of objects so that user stands at the center of objects line
+	* File: 2mcUI.py   --- mcUI wrapper for python2
+
 # 0.0.2 - 2019/02/14
 ## Changed
 	* Improve code quality
@@ -18,3 +24,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 	* directories are IRON_BLOCK
 	* files are WOOL
 
+------
+vim: ft=changelog
