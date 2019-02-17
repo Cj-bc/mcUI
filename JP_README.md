@@ -1,8 +1,9 @@
 English -> [README.md](https://github.com/Cj-bc/mcUI/blob/master/README.md)
 
-**注意** 現在alpha版にすらなっていないほどの開発中です。（まだ使えない）
-正規バージョンになった後でもそうですが、このmod(?)は**あなたのパソコンを破壊する恐れすらあります**。自己責任でお使いください。
-現段階、そして編集機能がつくまではその危険度は低いですが、ご了承ください。
+[![tipmona](https://img.shields.io/badge/tipme-%40tipmona-orange.svg)](https://twitter.com/share?text=%40tipmona%20tip%20%40Cj-bc%2011.7)  [![monya/mona](https://img.shields.io/badge/tipme-%40monya/mona-orange.svg)](https://monya-wallet.github.io/a/?address=MBdCkYyfTsCxtm1wZ1XyKWNLFLYj8zMK3V&scheme=monacoin)  [![tipkotone](https://img.shields.io/badge/tipme-%40tipkotone-orange.svg)](https://twitter.com/share?text=%40tipkotone%20tip%20%40Cj-bc%2011.7)
+
+このmod(?)は**あなたのパソコンを破壊する恐れすらあります**。自己責任でお使いください。
+現段階、編集機能がつくまではその危険度は低いですが、ご了承ください。
 
 # 概要
 
@@ -39,6 +40,7 @@ English -> [README.md](https://github.com/Cj-bc/mcUI/blob/master/README.md)
 
 実現するとは言ってないが、やりたい事たち
 
+-  [x] カレントディレクトリのエントリを設置する
 -  [ ] とりあえず、読み込み部分を完成させる
 -  [ ] 書き込みができるようにする
 -  [ ] アプリケーションにアクセスできるようにする
