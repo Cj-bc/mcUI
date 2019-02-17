@@ -39,6 +39,7 @@
 
 I'm not sure I'll make them
 
+-  [x] Display curernt directory's entries
 -  [ ] COmplete REDING part
 -  [ ] Enable to edit,write,create
 -  [ ] Enable to access applications
