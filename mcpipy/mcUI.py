@@ -139,8 +139,8 @@ def write_files(start_pos, face_to, files):
                           ]
         # TODO: Should be fixed when each object shape is no longer one block.
         #       Current script doesn't consider the size of each object
-        adjusted_pos = Vec3(start_pos.x - int(oneline_length /2), start_pos.y, start_pos.z)
         oneline_length = (len(lines[0]) -1) * abs(coordinate_list[0][0]) + 1
+        adjusted_pos = Vec3(start_pos.x + int(oneline_length /2), start_pos.y, start_pos.z)
         current_margin = Vec3(0, 0, margin)
     elif face_to == "west":
         coordinate_list = [ [-padding.z, line_vec.z],
@@ -149,8 +149,8 @@ def write_files(start_pos, face_to, files):
                           ]
         # TODO: Should be fixed when each object shape is no longer one block.
         #       Current script doesn't consider the size of each object
-        adjusted_pos = Vec3(start_pos.x, start_pos.y, start_pos.z - int(oneline_length /2))
         oneline_length = (len(lines[0]) -1) * abs(coordinate_list[2][0]) + 1
+        adjusted_pos = Vec3(start_pos.x, start_pos.y, start_pos.z + int(oneline_length /2))
         current_margin = Vec3(-margin, 0, 0)
 
 
