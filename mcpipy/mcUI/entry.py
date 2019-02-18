@@ -1,4 +1,24 @@
 #!/usr/bin/env python3
+import os
+from mcui.config import filetype_list
+
+def ftdetection(filename):
+    """ detect filetype from filename(extention)
+
+        This function is devided so that we can add
+        other methods to detect filetype(e.g. detect
+        filetype based on file contents)
+
+        Args:
+            filename (string): filename
+
+        Return:
+            filetype (string):filetype
+    """
+    _, ext = os.path.splitext(filename)
+    ret = filetype_list[ext] if filetype_list[ext] else "unknown"
+    return ret
+
 class Entry:
     """ file, directory, etc
 
