@@ -14,14 +14,8 @@ import mcpi.block as block
 import mcpi.entity as entity
 from mcpi.vec3 import Vec3
 from entry import Entry
+from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
 import os
-
-# configs(should be in config.py) {{{
-margin = 5 # mergin from player position to center of objects' spawing place
-padding = Vec3(3, 0, 0) # padding between each objects
-line_vec = Vec3(0, 3, 0) # vector to define which axis should objects follow
-MAX_OBJECT_PER_LINE = 3 # how much objects could be in one line?
-# }}}
 
 
 # functions {{{
@@ -35,9 +29,6 @@ def get_schemas():
             schema (dict): key is "filetype", value is "block"
     """
     # TODO: remove this hardcoded data scheme
-    schema = {"file": block.WOOL,
-              "dir": block.IRON_BLOCK,
-              "unknown": block.DIRT}
     return schema
 # }}}
 
