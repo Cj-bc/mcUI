@@ -151,9 +151,9 @@ def write_files(start_pos, face_to, files):
                                                                + index_line * coordinate_list[2][1] )
             mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[entry.filetype])
             mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
-                           '{CustomName: ' + entry.name + ', CustomNameVisible: true, NoGravity: true, \
+                           '{CustomName: ' + entry.filename + ', CustomNameVisible: true, NoGravity: true, \
                              Invisible: true}')
-            entry.setPos(spawn_pos)
+            entry.savePos(spawn_pos)
 # }}}
 # }}}
 
