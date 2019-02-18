@@ -24,16 +24,28 @@ class Entry:
 
         Args:
             parent (Entry): parent directory.
-            type (string): filetype. e.g. "file"/"dir"/"markdown"/"python"
-            name (string): filename.
+            filetype (string): filetype. e.g. "file"/"dir"/"markdown"/"python"
+            filename (string): filename.
             permission (int): permission of given entry.
+            symlink (bool): True if entry is symbolik link
     """
     # TODO: how to define 'parent'?
-    def __init__(self, parent, _type="file", name="temp", permission=755):
-        self.parent = parent
-        self.type = _type
-        self.name = name
-        self.permission = permission
+    def __init__(self, DirEntry):
+        """ Initialize Entry.
+
+            Args:
+                DirEntry (os.DirEntry): DirEntry to convert to Entry
+        """
+        self.symlink = True if DirEntry.is_symlink() else False
+        self.filename = DirEntry.name
+
+        if DirEntry.is_dir():
+            self.filetype = "dir"
+        elif DirEntry.is_file():
+            self.filetype = ftdetection(self.filename)
+
+        self.parent = ""
+        self.permission = ""
 
     def savePos(self, pos):
         """ set entry's position (in Minecraft) to pos.
@@ -48,5 +60,3 @@ class Entry:
         """ get entry's position (in Minecraft.)
         """
         return self.pos
-
-
