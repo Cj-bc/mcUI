@@ -4,23 +4,18 @@
 #
 # copyright (c) 2019 Cj-bc a.k.a Cj.bc_sd
 #
-# (@) version: 0.1.0
+# (@) version: 0.2.0
 # (@) usage:
 # (@)   run this script while Minecraft is running.
 
 
 import mcpi.minecraft as minecraft
 import mcpi.block as block
-# import mcpi.entity as entity
+import mcpi.entity as entity
 from mcpi.vec3 import Vec3
+from entry import Entry
+from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
 import os
-
-# configs(should be in config.py) {{{
-margin = 5 # mergin from player position to center of objects' spawing place
-padding = Vec3(3, 0, 0) # padding between each objects
-line_vec = Vec3(0, 3, 0) # vector to define which axis should objects follow
-MAX_OBJECT_PER_LINE = 3 # how much objects could be in one line?
-# }}}
 
 
 # functions {{{
@@ -33,10 +28,6 @@ def get_schemas():
         Return:
             schema (dict): key is "filetype", value is "block"
     """
-    # TODO: remove this hardcoded data scheme
-    schema = {"file": block.WOOL,
-              "dir": block.IRON_BLOCK,
-              "unknown": block.DIRT}
     return schema
 # }}}
 
@@ -56,15 +47,7 @@ def ls(path):
     """
     ret = []
     with os.scandir(path) as it:
-        for f in it:
-            # TODO: remove this hardcoded data scheme
-            if f.is_file():
-                ret += [{"type": "file", "name": f.name}]
-            elif f.is_dir():
-                ret += [{"type": "dir", "name": f.name}]
-            else:
-                ret += [{"type": "unknown", "name": f.name}]
-
+        ret = [Entry(ent) for ent in it]
     return ret
 # }}}
 
@@ -154,18 +137,21 @@ def write_files(start_pos, face_to, files):
         current_margin = Vec3(-margin, 0, 0)
 
 
-
-
     for index_line, a_line in enumerate(lines):
-        for index_row, obj in enumerate(a_line):
+        for index_row, entry in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
-            mc.setBlock(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
-                                                       + index_line * coordinate_list[0][1],
-                        adjusted_pos.y + current_margin.y + index_row * coordinate_list[1][0]
-                                                       + index_line * coordinate_list[1][1],
-                        adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
-                                                       + index_line * coordinate_list[2][1],
-                        schemas[obj["type"]])
+            spawn_pos = Vec3(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
+                                                               + index_line * coordinate_list[0][1],
+                                adjusted_pos.y + current_margin.y + index_row * coordinate_list[1][0]
+                                                               + index_line * coordinate_list[1][1],
+                                adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
+                                                               + index_line * coordinate_list[2][1] )
+            mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[entry.filetype])
+            ent_id = mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
+                                    '{CustomName: ' + entry.filename + \
+                                    ', CustomNameVisible: true, NoGravity: true, Invisible: true}')
+            entry.savePos(spawn_pos)
+            entry.saveNameEntityId(ent_id)
 # }}}
 # }}}
 
