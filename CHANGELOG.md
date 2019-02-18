@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # [version] - YYYY/MM/DD
 
+# 0.2.0 - 2019/02/18
+## Added
+	* Display filename using invisible armor_stand
+	* Detect file type from extention
+	* Use different block for each filetype
+	* Customizable schema in config.py
+	* 'Entry' class for storing what entry is displayed
+
+## Changed
+	* Move all related files(including mcpi dir) into mcui directory
+	* ls() returns list of 'Entry' objects
+	* move config values into mcui/config.py
+		* margin, padding, line_vec, MAX_OBJECT_PER_LINE
+		* filetype_list
+		* schema
+
+
 # 0.1.0 - 2019/02/17
 ## Added
 	* Spawn objects in front of user
