@@ -28,7 +28,6 @@ def get_schemas():
         Return:
             schema (dict): key is "filetype", value is "block"
     """
-    # TODO: remove this hardcoded data scheme
     return schema
 # }}}
 
@@ -138,8 +137,6 @@ def write_files(start_pos, face_to, files):
         current_margin = Vec3(-margin, 0, 0)
 
 
-
-
     for index_line, a_line in enumerate(lines):
         for index_row, entry in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
@@ -150,10 +147,11 @@ def write_files(start_pos, face_to, files):
                                 adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
                                                                + index_line * coordinate_list[2][1] )
             mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[entry.filetype])
-            mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
-                           '{CustomName: ' + entry.filename + ', CustomNameVisible: true, NoGravity: true, \
-                             Invisible: true}')
+            ent_id = mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
+                                    '{CustomName: ' + entry.filename + \
+                                    ', CustomNameVisible: true, NoGravity: true, Invisible: true}')
             entry.savePos(spawn_pos)
+            entry.saveNameEntityId(ent_id)
 # }}}
 # }}}
 

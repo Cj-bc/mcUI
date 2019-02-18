@@ -60,3 +60,11 @@ class Entry:
         """ get entry's position (in Minecraft.)
         """
         return self.pos
+
+    def saveNameEntityId(self, id):
+        """ Save armorstand entity(for displaying filename) id
+
+            Args:
+                id (int): entitiy id
+        """
+        self.nameEntityId = id
