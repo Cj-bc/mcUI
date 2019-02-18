@@ -57,15 +57,7 @@ def ls(path):
     """
     ret = []
     with os.scandir(path) as it:
-        for f in it:
-            # TODO: remove this hardcoded data scheme
-            if f.is_file():
-                ret += [{"type": "file", "name": f.name}]
-            elif f.is_dir():
-                ret += [{"type": "dir", "name": f.name}]
-            else:
-                ret += [{"type": "unknown", "name": f.name}]
-
+        ret = [Entry(ent) for ent in it]
     return ret
 # }}}
 
@@ -158,7 +150,7 @@ def write_files(start_pos, face_to, files):
 
 
     for index_line, a_line in enumerate(lines):
-        for index_row, obj in enumerate(a_line):
+        for index_row, entry in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
             spawn_pos = Vec3(adjusted_pos.x + current_margin.x + index_row * coordinate_list[0][0]
                                                                + index_line * coordinate_list[0][1],
@@ -166,11 +158,11 @@ def write_files(start_pos, face_to, files):
                                                                + index_line * coordinate_list[1][1],
                                 adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
                                                                + index_line * coordinate_list[2][1] )
-            mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[obj["type"]])
-            file_name = obj["name"]
+            mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[entry.filetype])
             mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
-                           '{CustomName: ' + file_name + ', CustomNameVisible: true, NoGravity: true, \
+                           '{CustomName: ' + entry.name + ', CustomNameVisible: true, NoGravity: true, \
                              Invisible: true}')
+            entry.setPos(spawn_pos)
 # }}}
 # }}}
 
