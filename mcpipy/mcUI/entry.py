@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-from mcui.config import filetype_list
+from config import filetype_list
 
 def ftdetection(filename):
     """ detect filetype from filename(extention)
