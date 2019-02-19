@@ -54,9 +54,30 @@ def write_pane(mc, pane):
     """
     schemas = schema
 
+    for entry in pane.entries:
+        mc.setBlock(entry.pos.x, entry.pos.y, entry.pos.z, schemas[entry.filetype])
+        ent_id = mc.spawnEntity(entity.ARMORSTAND, entry.pos,
+                                '{CustomName: ' + entry.filename + \
+                                ', CustomNameVisible: true, NoGravity: true, Invisible: true}')
+        entry.saveNameEntityId(ent_id)
+# }}}
+
+
+def calc_entries_coordinate(pane, padding, line_vector, line_max):
+    """ calculate entries coordinate in Minecraft
+
+        Args:
+            pane (Pane): pane that contains entries to calclate coordinate
+            padding (vec3.Vec3): Define how many blanks are required around each Entity in Minecraft. config: padding
+            line_vector (vec3.Vec3): Define which direction the next line appears. config: line_vec
+            line_max (int): Max amount of each line. config: MAX_OBJECT_PER_LINE
+
+        Return:
+            list_of_vec (list of vec3.Vec3): list of vec3 values
+    """
     # Divide into few lists that have exactlly the same amount of MAX_OBJECT_PER_LINE object.
-    lines = [pane.entries[i:i+MAX_OBJECT_PER_LINE]
-            for i in range(0,len(pane.entries), MAX_OBJECT_PER_LINE)]
+    lines = [pane.entries[i:i+line_max]
+            for i in range(0,len(pane.entries), line_max)]
 
     if pane.face_to == "north":
         coordinate_list = [ [padding.x, line_vec.x],
@@ -78,7 +99,7 @@ def write_pane(mc, pane):
         oneline_length = (len(lines[0]) -1) * abs(coordinate_list[2][0]) + 1
         adjusted_pos = Vec3(pane.pos.x, pane.pos.y, pane.pos.z - int(oneline_length /2))
         current_margin = Vec3(margin, 0, 0)
-    elif face_to == "south":
+    elif pane.face_to == "south":
         coordinate_list = [ [-padding.x, line_vec.x],
                             [padding.y, line_vec.y],
                             [-padding.z, line_vec.z]
@@ -88,7 +109,7 @@ def write_pane(mc, pane):
         oneline_length = (len(lines[0]) -1) * abs(coordinate_list[0][0]) + 1
         adjusted_pos = Vec3(pane.pos.x + int(oneline_length /2), pane.pos.y, pane.pos.z)
         current_margin = Vec3(0, 0, margin)
-    elif face_to == "west":
+    elif pane.face_to == "west":
         coordinate_list = [ [-padding.z, line_vec.z],
                             [padding.y, line_vec.y],
                             [-padding.x, line_vec.x]
@@ -100,6 +121,7 @@ def write_pane(mc, pane):
         current_margin = Vec3(-margin, 0, 0)
 
 
+    ret = []
     for index_line, a_line in enumerate(lines):
         for index_row, entry in enumerate(a_line):
             # I think it's not a good idea to apply margin here. But I have no idea other than that for now
@@ -109,13 +131,10 @@ def write_pane(mc, pane):
                                                                + index_line * coordinate_list[1][1],
                                 adjusted_pos.z + current_margin.z + index_row * coordinate_list[2][0]
                                                                + index_line * coordinate_list[2][1] )
-            mc.setBlock(spawn_pos.x, spawn_pos.y, spawn_pos.z, schemas[entry.filetype])
-            ent_id = mc.spawnEntity(entity.ARMORSTAND, spawn_pos,
-                                    '{CustomName: ' + entry.filename + \
-                                    ', CustomNameVisible: true, NoGravity: true, Invisible: true}')
-            entry.savePos(spawn_pos)
-            entry.saveNameEntityId(ent_id)
-# }}}
+            ret.append(spawn_pos)
+
+    return ret
+
 
 
 
