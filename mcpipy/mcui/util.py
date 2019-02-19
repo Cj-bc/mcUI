@@ -1,5 +1,6 @@
 import mcpi.entity as entity
 from mcpi.vec3 import Vec3
+import mcpi.block as block
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
 
 
@@ -136,5 +137,15 @@ def calc_entries_coordinate(pane, padding, line_vector, line_max):
     return ret
 
 
+def remove_pane(mc, pane):
+    """ Remove 'pane' from Minecraft
 
+        Args:
+            mc  (mcpi.minecraft.Minecraft): minecraft object
+            pane (Pane): pane to remove
+    """
+
+    for ent in pane.get_entries():
+        mc.setBlock(ent.pos.x, ent.pos.y, ent.pos.z, block.AIR)
+        mc.removeEntity(ent.nameEntityId)
 
