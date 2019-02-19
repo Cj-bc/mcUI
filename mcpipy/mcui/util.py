@@ -3,8 +3,7 @@ from mcpi.vec3 import Vec3
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
 
 
-# functions {{{
-# get_schemas() {{{2
+# get_schemas() {{{
 def get_schemas():
     """get list of blocks for each filetype
 
@@ -17,7 +16,7 @@ def get_schemas():
 # }}}
 
 
-# direction(rot) {{{2
+# direction(rot) {{{
 def direction(rot):
     """ Convert Rotation data (comes from player.getRotation) into Player's direction.
 
@@ -118,7 +117,5 @@ def write_pane(mc, pane):
             entry.saveNameEntityId(ent_id)
 # }}}
 
-
-# }}}
 
 
