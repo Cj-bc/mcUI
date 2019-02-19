@@ -92,3 +92,10 @@ class Pane:
         self.entries = entries
         self.pos = pos
         self.face_to = face_to
+
+    def get_entries(self):
+        """ generator for Entries
+        """
+        for ent in self.entries:
+            yield ent
+
