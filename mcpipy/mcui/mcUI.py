@@ -12,7 +12,9 @@ import os
 
 import mcpi.minecraft as minecraft
 from mcpi.vec3 import Vec3
+from entry import Pane
 from util import *
+from commands import ls
 
 
 mc = minecraft.Minecraft()
@@ -24,4 +26,5 @@ spawn_object_direction_criteria = direction(mc.player.getRotation())
 mc.postToChat(f'pwd: {pwd}')
 
 # TODO: WIP
-write_files(spawn_object_criteria, spawn_object_direction_criteria,ls(pwd))
+pane = Pane(entries=ls(pwd), pos=spawn_object_criteria, face_to=spawn_object_direction_criteria)
+write_pane(mc, pane)
