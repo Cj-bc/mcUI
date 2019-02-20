@@ -136,29 +136,31 @@ class ChatCommand():
             return (Pane(path=argv[1], entries=commands.ls(argv[1]),
                          pos=mc.player.getPos(), face_to=direction(mc.player.getRotate())), True)
         elif argv[0] == "move":
-            if argv[1] > len(session.panes):
+            if int(argv[1]) > len(session.panes):
                 return (None, None)
 
-            index = argv[1]
-            x = argv[2]
-            y = argv[3]
-            z = argv[4]
+            index = int(argv[1])
+            x = int(argv[2])
+            y = int(argv[3])
+            z = int(argv[4])
             addition = Vec3(x, y, z)
 
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
                          pos=pane.pos + addition, face_to=pane.face_to), False)
-        elif argv[0] == "deactiavte":
-            if argv[1] > len(session.panes):
+        elif argv[0] == "deactivate":
+            if int(argv[1]) > len(session.panes):
                 return (None, None)
 
+            index = int(argv[1])
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
                          pos=pane.pos, face_to=pane.face_to, active=False), False)
         elif argv[0] == "activate":
-            if argv[1] > len(session.panes):
+            if int(argv[1]) > len(session.panes):
                 return (None, None)
 
+            index = int(argv[1])
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
                          pos=pane.pos, face_to=pane.face_to, active=True), False)
