@@ -69,8 +69,8 @@ class ChatCommand():
         pass
         return (None, None)
 
-    def exit(session):
-        """
+    def exit(session, *argv):
+        """ Exit mcUI process
         """
         session.is_end = True
         return (None, None)
