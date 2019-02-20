@@ -46,6 +46,8 @@ while not the_session.is_end:
 
         reload_pane(mc, pane)
 
+
+    # Wait 'till user input
     user_input = []
     while user_input == []:
         user_input = mc.events.pollChatPosts()
@@ -57,6 +59,7 @@ while not the_session.is_end:
             the_session.add_pane(ret_pane)
         elif not is_new:
             the_session.update_pane(0, ret_pane)
+
 
 mc.postToChat('removing mcUI...')
 for pane in the_session.panes:

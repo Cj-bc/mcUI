@@ -68,6 +68,7 @@ def write_pane(mc, pane):
 # }}}
 
 
+# calc_entries_coordinate(pane, padding, line_vector, line_max){{{
 def calc_entries_coordinate(pane, padding, line_vector, line_max):
     """ calculate entries coordinate in Minecraft
 
@@ -139,8 +140,10 @@ def calc_entries_coordinate(pane, padding, line_vector, line_max):
             ret.append(spawn_pos)
 
     return ret
+# }}}
 
 
+# remove_pane(mc, pane){{{
 def remove_pane(mc, pane):
     """ Remove 'pane' from Minecraft
 
@@ -152,8 +155,10 @@ def remove_pane(mc, pane):
     for ent in pane.get_entries():
         mc.setBlock(ent.pos.x, ent.pos.y, ent.pos.z, block.AIR)
         mc.removeEntity(ent.nameEntityId)
+# }}}
 
 
+# reload_pane(mc, pane){{{
 def reload_pane(mc, pane):
     """ Re-construct pane in Minecraft
 
@@ -164,6 +169,7 @@ def reload_pane(mc, pane):
 
     remove_pane(mc, pane)
     write_pane(mc, pane)
+# }}}
 
 
 # get_abspath(path, base_path){{{
