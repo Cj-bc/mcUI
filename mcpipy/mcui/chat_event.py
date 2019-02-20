@@ -20,11 +20,11 @@ class ChatCommand():
             words = text.split(" ")
 
             if words[0] == 'cat':
-                return ChatCommand.cat(words[1:])
+                return ChatCommand.cat(mc, words[1:])
             elif words[0] == 'cd':
-                return ChatCommand.cd(words[1:])
+                return ChatCommand.cd(session, words[1:])
             elif words[0] == 'cp':
-                return ChatCommand.cp(words[1:])
+                return ChatCommand.cp(session, words[1:])
             elif words[0] == 'exit':
                 return ChatCommand.exit(session, words[1:])
             elif words[0] == 'help':
@@ -34,9 +34,9 @@ class ChatCommand():
             elif words[0] == 'man':
                 return ChatCommand.man(words[1:])
             elif words[0] == 'mv':
-                return ChatCommand.mv(words[1:])
+                return ChatCommand.mv(session, words[1:])
             elif words[0] == 'pwd':
-                return ChatCommand.pwd()
+                return ChatCommand.pwd(mc, session)
             elif words[0] == 'rm':
                 return ChatCommand.rm(words[1:])
             # ^ UNIX commands; v mcUI commands
@@ -107,12 +107,14 @@ class ChatCommand():
         pass
         return (None, None)
 
-    def mv(*pathes):
+    def mv(session, pathes):
         pass
         return (None, None)
 
-    def pwd(self):
-        pass
+    def pwd(mc, session):
+        """ Echo pwd to Chat
+        """
+        mc.postToChat(f'pwd: {session.panes[0].path}')
         return (None, None)
 
     def rm(*pathes):
