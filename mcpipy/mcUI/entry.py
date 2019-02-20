@@ -36,6 +36,7 @@ class Entry:
             Args:
                 DirEntry (os.DirEntry): DirEntry to convert to Entry
         """
+        self.nameEntityId = 0
         self.symlink = True if DirEntry.is_symlink() else False
         self.filename = DirEntry.name
 
