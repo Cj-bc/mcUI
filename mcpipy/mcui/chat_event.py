@@ -44,14 +44,15 @@ class ChatCommand():
                 return ChatCommand.reload(words[1:])
 
 
-    def cat(mc, *path):
+    def cat(mc, *pathes):
         """ Catinate 'path' files to Chat
 
             Args:
-                *path (list of str): required at least 1. Path to the file to cat
+                *pathes (list of str): required at least 1. Path to the file to cat
         """
-        for path in *path:
-            continue if not os.path.isfile(path)
+        for path in pathes:
+            if not os.path.isfile(path):
+                continue
             with open(path,'r') as f:
                 mc.player.postToChat(f.read())
 
