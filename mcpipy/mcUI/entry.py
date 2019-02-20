@@ -102,3 +102,38 @@ class Pane:
         for ent in self.entries:
             yield ent
 
+
+
+
+class Session:
+    """ Manage all state of mcUI
+
+        This should be created only once
+
+        Args:
+            panes (list of Pane): contains panes
+    """
+
+    def __init__(self):
+        """ Initialize session
+        """
+        self.panes = []
+        self.is_end = False
+
+
+    def add_pane(self, pane):
+        """ Add pane 'pane' to session's pane
+
+            Args:
+                pane (Pane): pane to add
+        """
+        self.panes += [pane]
+
+    def update_pane(self, pane, index):
+        """ Update panes['index'] to 'pane'
+
+            Args:
+                pane (Pane): pane object to update to
+                index (int): index of pane to update
+        """
+        self.panes[index] = pane
