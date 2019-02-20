@@ -41,7 +41,16 @@ while not the_session.is_end:
         write_pane(mc, pane)
 
 
-    time.sleep(1)
+    user_input = []
+    while user_input == []:
+        user_input = mc.events.pollChatPosts()
+        time.sleep(1)
+
+    ret_pane, is_new = ChatCommand.run_chat_command(mc, session, user_input, player_allowed_use_command)
+    if is_new:
+        the_session.add_pane(ret_pane)
+    elif not is_new:
+        the_session.update_pane(0, ret_pane)
 
 mc.postToChat('removing mcUI...')
 for pane in the_session.panes:
