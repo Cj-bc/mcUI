@@ -162,3 +162,26 @@ def reload_pane(mc, pane):
 
     remove_pane(mc, pane)
     write_pane(mc, pane)
+
+
+# get_abspath(path, base_path){{{
+def get_abspath(path, base_path):
+    """ Return absolute path of 'path'
+
+        If 'path' is already absolute path, Return 'path' itself
+        If 'path' contains '~', expand it and return absolute path
+
+        Args:
+            path (str): path to get absolute path
+            base_path (str): base path(pwd)
+
+        Returns:
+            abspath (str): absolute path for 'path'
+    """
+    regex_abspath = r'^/.*'
+    regex_fromhome = r'^~/.*'
+    if re.match(regex_abspath, path) or re.match(regex_fromhome, path):
+        return os.path.expanduser(path)
+    else:
+        return base_path + '/' + path
+# }}}
