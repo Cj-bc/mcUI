@@ -18,30 +18,30 @@ class ChatCommand():
             words = list(filter(lambda x: x != ' ',re.findall(r'([^ ]*])', text)))
 
             if words[0] == 'cat':
-                self.cat(words[1:])
+                return ChatCommand.cat(words[1:])
             elif words[0] == 'cd':
-                self.cd(words[1:])
+                return ChatCommand.cd(words[1:])
             elif words[0] == 'cp':
-                self.cp(words[1:])
+                return ChatCommand.cp(words[1:])
             elif words[0] == 'exit':
-                self.exit(words[1:])
+                return ChatCommand.exit(words[1:])
             elif words[0] == 'help':
-                self.help(words[1:])
+                return ChatCommand.help(words[1:])
             elif words[0] == 'ls':
-                self.ls(words[1:])
+                return ChatCommand.ls(session, words[1:])
             elif words[0] == 'man':
-                self.man(words[1:])
+                return ChatCommand.man(words[1:])
             elif words[0] == 'mv':
-                self.mv(words[1:])
+                return ChatCommand.mv(words[1:])
             elif words[0] == 'pwd':
-                self.pwd()
+                return ChatCommand.pwd()
             elif words[0] == 'rm':
-                self.rm(words[1:])
+                return ChatCommand.rm(words[1:])
             # ^ UNIX commands; v mcUI commands
             elif words[0] == 'create':
-                self.create(words[1:])
+                return ChatCommand.create(words[1:])
             elif words[0] == 'reload':
-                self.reload(words[1:])
+                return ChatCommand.reload(words[1:])
 
 
     def cat(mc, *path):
