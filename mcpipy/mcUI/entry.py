@@ -84,9 +84,10 @@ class Pane:
             pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
             face_to (string): direction taht Pane face to. north/south/west/east
             path (string): path of parent directory of entries
+            active (bool): Whether this pane will be displayed in Minecraft
     """
     
-    def __init__(self, path, entries, pos, face_to):
+    def __init__(self, path, entries, pos, face_to, active=True):
         """ Initialize Pane
             
             Args:
@@ -99,6 +100,7 @@ class Pane:
         self.entries = entries
         self.pos = pos
         self.face_to = face_to
+        self.active = active
 
     def get_entries(self):
         """ generator for Entries
