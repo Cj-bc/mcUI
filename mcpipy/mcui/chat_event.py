@@ -154,14 +154,14 @@ class ChatCommand():
 
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
-                         pos=pane.pos, face_to=pane.face_to, active=False))
+                         pos=pane.pos, face_to=pane.face_to, active=False), False)
         elif argv[0] == "activate":
             if argv[1] > len(session.panes):
                 return (None, None)
 
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
-                         pos=pane.pos, face_to=pane.face_to, active=True))
+                         pos=pane.pos, face_to=pane.face_to, active=True), False)
         elif argv[0] == "list":
             mc.postToChat(f'panes: {session.panes}')
             return (None, None)
