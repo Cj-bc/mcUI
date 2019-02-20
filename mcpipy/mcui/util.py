@@ -2,6 +2,8 @@ import mcpi.entity as entity
 from mcpi.vec3 import Vec3
 import mcpi.block as block
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
+import os
+import re
 
 
 # get_schemas() {{{
