@@ -5,7 +5,7 @@ import commands
 class ChatCommand():
     """ Treat chat command from Minecraft
     """
-    @static
+    @staticmethod
     def run_chat_command(mc, session, events, entity_id):
         """ Run detected chat command from list 'events', spoken by 'entity_id'
 
