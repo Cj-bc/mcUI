@@ -25,7 +25,7 @@ class ChatCommand():
             elif words[0] == 'cp':
                 return ChatCommand.cp(words[1:])
             elif words[0] == 'exit':
-                return ChatCommand.exit(words[1:])
+                return ChatCommand.exit(session, words[1:])
             elif words[0] == 'help':
                 return ChatCommand.help(words[1:])
             elif words[0] == 'ls':
@@ -39,8 +39,8 @@ class ChatCommand():
             elif words[0] == 'rm':
                 return ChatCommand.rm(words[1:])
             # ^ UNIX commands; v mcUI commands
-            elif words[0] == 'create':
-                return ChatCommand.create(words[1:])
+            elif words[0] == 'pane':
+                return ChatCommand.pane(mc, session, words[1:])
             elif words[0] == 'reload':
                 return ChatCommand.reload(words[1:])
             else:
@@ -57,7 +57,7 @@ class ChatCommand():
             if not os.path.isfile(path):
                 continue
             with open(path,'r') as f:
-                mc.player.postToChat(f.read())
+                mc.postToChat(f.read())
 
         return (None, None)
 
