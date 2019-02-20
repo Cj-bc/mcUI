@@ -131,7 +131,7 @@ class Session:
         """
         self.panes += [pane]
 
-    def update_pane(self, pane, index):
+    def update_pane(self, index, pane):
         """ Update panes['index'] to 'pane'
 
             Args:
