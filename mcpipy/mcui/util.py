@@ -149,3 +149,14 @@ def remove_pane(mc, pane):
         mc.setBlock(ent.pos.x, ent.pos.y, ent.pos.z, block.AIR)
         mc.removeEntity(ent.nameEntityId)
 
+
+def reload_pane(mc, pane):
+    """ Re-construct pane in Minecraft
+
+        Args:
+            mc  (mcpi.minecraft.Minecraft): minecraft object
+            pane (Pane): pane to reload
+    """
+
+    remove_pane(mc, pane)
+    write_pane(mc, pane)
