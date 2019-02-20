@@ -15,7 +15,7 @@ class ChatCommand():
                 entity_id (list of int): entity id to recognize as command
         """
         for text in [e.message for e in events if e.entityId in entity_id]:
-            words = list(filter(lambda x: x != ' ',re.findall(r'([^ ]*])', text)))
+            words = text.split(" ")
 
             if words[0] == 'cat':
                 return ChatCommand.cat(words[1:])
