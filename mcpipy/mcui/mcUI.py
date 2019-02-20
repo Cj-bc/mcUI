@@ -16,6 +16,7 @@ from mcpi.vec3 import Vec3
 from entry import Pane
 from util import *
 from commands import ls
+from chat_event import ChatCommand
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE
 from entry import Session
 
@@ -46,11 +47,12 @@ while not the_session.is_end:
         user_input = mc.events.pollChatPosts()
         time.sleep(1)
 
-    ret_pane, is_new = ChatCommand.run_chat_command(mc, session, user_input, player_allowed_use_command)
-    if is_new:
-        the_session.add_pane(ret_pane)
-    elif not is_new:
-        the_session.update_pane(0, ret_pane)
+    ret_pane, is_new = ChatCommand.run_chat_command(mc, the_session, user_input, player_allowed_use_command)
+    if ret_pane is not None:
+        if is_new:
+            the_session.add_pane(ret_pane)
+        elif not is_new:
+            the_session.update_pane(0, ret_pane)
 
 mc.postToChat('removing mcUI...')
 for pane in the_session.panes:
