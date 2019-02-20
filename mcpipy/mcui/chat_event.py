@@ -55,8 +55,25 @@ class ChatCommand():
             with open(path,'r') as f:
                 mc.player.postToChat(f.read())
 
+    def cd(session, *pathes):
+        pass
+        return (None, None)
 
-    def ls(session, *path, is_new=False):
+    def cp(session, *pathes):
+        pass
+        return (None, None)
+
+    def exit(session):
+        """
+        """
+        session.is_end = True
+        return (None, None)
+
+    def help(*path):
+        pass
+        return (None, None)
+
+    def ls(session, pathes):
         """ execute ls in 'path'
 
             Args:
@@ -69,10 +86,26 @@ class ChatCommand():
         new_path = pane.path + path[0]
         return (Pane(path=new_path, entries=commands.ls(nwe_path),
                     pos=pane.pos, face_to=pane.face_to), is_new)
+    def man(*argv):
+        pass
+        return (None, None)
 
+    def mv(*pathes):
+        pass
+        return (None, None)
 
-    def exit(session):
-        """
-        """
-        session.is_end = True
+    def pwd(self):
+        pass
+        return (None, None)
 
+    def rm(*pathes):
+        pass
+        return (None, None)
+
+    def create(*argv):
+        pass
+        return (None, None)
+
+    def reload(*argv):
+        pass
+        return (None, None)
