@@ -2,6 +2,7 @@ import re
 import os
 import commands
 from entry import Pane
+from util import direction
 
 class ChatCommand():
     """ Treat chat command from Minecraft
@@ -118,8 +119,57 @@ class ChatCommand():
         pass
         return (None, None)
 
-    def create(*argv):
-        pass
+    def pane(mc, session, argv):
+        """ Manage panes
+
+            This command has subcommands:
+                create <path>  -- create new pane with <path>
+                move <pane_num> <x> <y> <z>  --- Add Vec3(x,y,z) to pane's coordinate
+                deactivate <pane_num>  --- deactivate pane <pane_num> from Minecraft
+                active <pane_num> --- activate pane <pane_num> in Minecraft
+                list --- return list of panes
+        """
+        if argv[0] == "create":
+            if not os.path.isdir(argv[1]):
+                return (None, None)
+
+            return (Pane(path=argv[1], entries=commands.ls(argv[1]),
+                         pos=mc.player.getPos(), face_to=direction(mc.player.getRotate())), True)
+        elif argv[0] == "move":
+            if argv[1] > len(session.panes):
+                return (None, None)
+
+            index = argv[1]
+            x = argv[2]
+            y = argv[3]
+            z = argv[4]
+            addition = Vec3(x, y, z)
+
+            pane = session.panes[index]
+            return (Pane(path=pane.path, entries=pane.entries,
+                         pos=pane.pos + addition, face_to=pane.face_to), False)
+        elif argv[0] == "deactiavte":
+            if argv[1] > len(session.panes):
+                return (None, None)
+
+            pane = session.panes[index]
+            return (Pane(path=pane.path, entries=pane.entries,
+                         pos=pane.pos, face_to=pane.face_to, active=False))
+        elif argv[0] == "activate":
+            if argv[1] > len(session.panes):
+                return (None, None)
+
+            pane = session.panes[index]
+            return (Pane(path=pane.path, entries=pane.entries,
+                         pos=pane.pos, face_to=pane.face_to, active=True))
+        elif argv[0] == "list":
+            mc.postToChat(f'panes: {session.panes}')
+            return (None, None)
+        else:
+            return (None, None)
+
+
+
         return (None, None)
 
     def reload(*argv):
