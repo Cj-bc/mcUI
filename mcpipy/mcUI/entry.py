@@ -118,12 +118,15 @@ class Session:
 
         Args:
             panes (list of Pane): contains panes
+            is_end (bool): False while the session is alive
+            gabage (list of Pane): gabage panes(should be removed in next remove_pane)
     """
 
     def __init__(self):
         """ Initialize session
         """
         self.panes = []
+        self.gabage = []
         self.is_end = False
 
 
@@ -142,4 +145,5 @@ class Session:
                 pane (Pane): pane object to update to
                 index (int): index of pane to update
         """
+        self.gabage += [self.panes[index]]
         self.panes[index] = pane
