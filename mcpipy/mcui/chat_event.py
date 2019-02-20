@@ -1,6 +1,7 @@
 import re
 import os
 import commands
+from entry import Pane
 
 class ChatCommand():
     """ Treat chat command from Minecraft
@@ -78,15 +79,25 @@ class ChatCommand():
         """ execute ls in 'path'
 
             Args:
-                *path (list of str): optional. path to execute ls. If empty, pwd will used
+                *pathes (list of str): optional. path to execute ls. If empty, pwd will used
 
             Return:
                 new_pane (Pane): new(Updated) Pane
         """
         pane = session.panes[0]
-        new_path = pane.path + path[0]
-        return (Pane(path=new_path, entries=commands.ls(nwe_path),
-                    pos=pane.pos, face_to=pane.face_to), is_new)
+        if len(pathes) != 0:
+            regex_abspath = r'^/.*'
+            regex_fromhome = r'^~/.*'
+            if re.match(regex_abspath, pathes[0]) or re.match(regex_fromhome, pathes[0]):
+                new_path = os.path.expanduser(pathes[0])
+            else:
+                new_path = pane.path + '/' + pathes[0]
+        else:
+            new_path = pane.path
+
+        return (Pane(path=new_path, entries=commands.ls(new_path),
+                    pos=pane.pos, face_to=pane.face_to), True)
+
     def man(*argv):
         pass
         return (None, None)
