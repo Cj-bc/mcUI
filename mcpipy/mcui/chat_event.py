@@ -43,6 +43,8 @@ class ChatCommand():
                 return ChatCommand.create(words[1:])
             elif words[0] == 'reload':
                 return ChatCommand.reload(words[1:])
+            else:
+                return (None, None)
 
 
     def cat(mc, *pathes):
@@ -56,6 +58,8 @@ class ChatCommand():
                 continue
             with open(path,'r') as f:
                 mc.player.postToChat(f.read())
+
+        return (None, None)
 
     def cd(session, *pathes):
         pass
