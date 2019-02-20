@@ -82,9 +82,10 @@ class Pane:
             entries (list of Entry): entries that is sotred in the pane
             pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
             face_to (string): direction taht Pane face to. north/south/west/east
+            path (string): path of parent directory of entries
     """
     
-    def __init__(self, entries, pos, face_to):
+    def __init__(self, path, entries, pos, face_to):
         """ Initialize Pane
             
             Args:
@@ -92,6 +93,7 @@ class Pane:
                 pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
                 face_to (string): direction taht Pane face to. north/south/west/east
         """
+        self.path = path
         self.entries = entries
         self.pos = pos
         self.face_to = face_to
