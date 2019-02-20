@@ -54,6 +54,8 @@ def write_pane(mc, pane):
             no return
     """
     schemas = schema
+    if pane.active != True:
+        return
 
     for entry in pane.entries:
         mc.setBlock(entry.pos.x, entry.pos.y, entry.pos.z, schemas[entry.filetype])
