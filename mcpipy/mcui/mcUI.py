@@ -33,13 +33,14 @@ mc.postToChat(f'pwd: {pwd}')
 the_session = Session()
 the_session.add_pane(Pane(path=pwd, entries=ls(pwd), pos=spawn_object_criteria, face_to=spawn_object_direction_criteria))
 
+
 while not the_session.is_end:
     for pane in the_session.panes:
         for entry, pos in zip(pane.entries,
                               calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
             entry.savePos(pos)
 
-        write_pane(mc, pane)
+        reload_pane(mc, pane)
 
     user_input = []
     while user_input == []:
