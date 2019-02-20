@@ -62,9 +62,15 @@ class ChatCommand():
 
         return (None, None)
 
-    def cd(session, *pathes):
-        pass
-        return (None, None)
+    def cd(session, pathes):
+        """ execute 'cd' and chnage current dir
+        """
+        pane = session.panes[0] # TODO: shoulb be changed to support multi pane
+        new_path = get_abspath(pathes[0], pane.path) if len(pathes) != 0 else pane.path
+
+        return (Pane(path=new_path, entries=commands.ls(new_path),
+                    pos=pane.pos, face_to=pane.face_to), False)
+
 
     def cp(session, *pathes):
         pass
