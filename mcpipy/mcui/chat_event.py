@@ -2,7 +2,7 @@ import re
 import os
 import commands
 from entry import Pane
-from util import direction
+from util import direction, get_abspath
 
 class ChatCommand():
     """ Treat chat command from Minecraft
@@ -90,15 +90,7 @@ class ChatCommand():
                 new_pane (Pane): new(Updated) Pane
         """
         pane = session.panes[0]
-        if len(pathes) != 0:
-            regex_abspath = r'^/.*'
-            regex_fromhome = r'^~/.*'
-            if re.match(regex_abspath, pathes[0]) or re.match(regex_fromhome, pathes[0]):
-                new_path = os.path.expanduser(pathes[0])
-            else:
-                new_path = pane.path + '/' + pathes[0]
-        else:
-            new_path = pane.path
+        new_path = get_abspath(pathes[0], pane.path) if len(pathes) != 0 else pane.path
 
         return (Pane(path=new_path, entries=commands.ls(new_path),
                     pos=pane.pos, face_to=pane.face_to), True)
