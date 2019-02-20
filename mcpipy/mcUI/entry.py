@@ -47,6 +47,7 @@ class Entry:
         self.parent = ""
         self.permission = ""
 
+
     def savePos(self, pos):
         """ set entry's position (in Minecraft) to pos.
             This doesn't spawn itself, just saving where they're spawned
@@ -56,10 +57,12 @@ class Entry:
         """
         self.pos = pos
 
+
     def getPos(self):
         """ get entry's position (in Minecraft.)
         """
         return self.pos
+
 
     def saveNameEntityId(self, id):
         """ Save armorstand entity(for displaying filename) id
