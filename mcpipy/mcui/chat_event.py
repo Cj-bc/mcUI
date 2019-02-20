@@ -48,11 +48,11 @@ class ChatCommand():
                 return (None, None)
 
 
-    def cat(mc, *pathes):
+    def cat(mc, pathes):
         """ Catinate 'path' files to Chat
 
             Args:
-                *pathes (list of str): required at least 1. Path to the file to cat
+                pathes (list of str): required at least 1. Path to the file to cat
         """
         for path in pathes:
             if not os.path.isfile(path):
