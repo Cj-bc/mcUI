@@ -35,6 +35,10 @@ the_session.add_pane(Pane(path=pwd, entries=ls(pwd), pos=spawn_object_criteria, 
 
 
 while not the_session.is_end:
+    # Update Minecraft condition
+    for pane in the_session.gabage:
+        remove_pane(mc, pane)
+
     for pane in the_session.panes:
         for entry, pos in zip(pane.entries,
                               calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
