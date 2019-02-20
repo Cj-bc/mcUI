@@ -92,6 +92,7 @@ class Pane:
                 entries (list of Entry): entries that is sotred in the pane
                 pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
                 face_to (string): direction taht Pane face to. north/south/west/east
+                path (string): path of parent directory of entries
         """
         self.path = path
         self.entries = entries
