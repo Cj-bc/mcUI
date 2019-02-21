@@ -25,7 +25,8 @@ filetype_list = {"": "text",
                  ".cpp": "c++",
                  ".exe": "windows-executable",
                  ".swp": "vim-swap-file",
-                 ".swo": "vim-sawp-file"
+                 ".swo": "vim-swap-file",
+                 ".pyc": "python-cash"
                 }
 
 schema = {"file": block.WOOL,
@@ -43,4 +44,5 @@ schema = {"file": block.WOOL,
           "cpp": block.WOOD_PLANKS,
           "windows-executable": block.DIRT_PODZOL,
           "vim-swap-file": block.WOOD_PLANKS_ACACIA,
+          "python-cash": block.WOOD_PLANKS_ACACIA,
           "unknown": block.DIRT}
