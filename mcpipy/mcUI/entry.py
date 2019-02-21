@@ -19,7 +19,7 @@ def ftdetection(filename: str) -> str:
             filetype (string):filetype
     """
     _, ext = os.path.splitext(filename)
-    ret = filetype_list[ext] if filetype_list[ext] else "unknown"
+    ret = filetype_list[ext] if ext in filetype_list else "unknown"
     return ret
 
 class Entry:
