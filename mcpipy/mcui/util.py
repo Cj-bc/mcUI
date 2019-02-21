@@ -1,13 +1,15 @@
 import mcpi.entity as entity
 from mcpi.vec3 import Vec3
 import mcpi.block as block
+import mcpi.minecraft as minecraft
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
+from entry import Pane
 import os
 import re
 
 
 # get_schemas() {{{
-def get_schemas():
+def get_schemas() -> dict:
     """get list of blocks for each filetype
 
         Args:
@@ -20,7 +22,7 @@ def get_schemas():
 
 
 # direction(rot) {{{
-def direction(rot):
+def direction(rot: float) -> str:
     """ Convert Rotation data (comes from player.getRotation) into Player's direction.
 
         Args:
@@ -45,7 +47,7 @@ def direction(rot):
 
 
 # write_pane(start_pos, files) {{{
-def write_pane(mc, pane):
+def write_pane(mc: minecraft.Minecraft, pane: Pane) -> None:
     """write "files" file entries to minecraft world
         Number of objects lay in one line is defined as MAX_OBJECT_PER_LINE
 
@@ -69,7 +71,7 @@ def write_pane(mc, pane):
 
 
 # calc_entries_coordinate(pane, padding, line_vector, line_max){{{
-def calc_entries_coordinate(pane, padding, line_vector, line_max):
+def calc_entries_coordinate(pane: Pane, padding: Vec3, line_vector: Vec3, line_max: int) -> list:
     """ calculate entries coordinate in Minecraft
 
         Args:
@@ -144,7 +146,7 @@ def calc_entries_coordinate(pane, padding, line_vector, line_max):
 
 
 # remove_pane(mc, pane){{{
-def remove_pane(mc, pane):
+def remove_pane(mc: minecraft.Minecraft, pane: Pane) -> None:
     """ Remove 'pane' from Minecraft
 
         Args:
@@ -159,7 +161,7 @@ def remove_pane(mc, pane):
 
 
 # reload_pane(mc, pane){{{
-def reload_pane(mc, pane):
+def reload_pane(mc: minecraft.Minecraft, pane: Pane) -> None:
     """ Re-construct pane in Minecraft
 
         Args:
@@ -173,7 +175,7 @@ def reload_pane(mc, pane):
 
 
 # get_abspath(path, base_path){{{
-def get_abspath(path, base_path):
+def get_abspath(path: str, base_path: str) -> str:
     """ Return absolute path of 'path'
 
         If 'path' is already absolute path, Return 'path' itself

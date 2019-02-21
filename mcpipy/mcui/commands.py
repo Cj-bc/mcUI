@@ -2,7 +2,7 @@ from entry import Entry
 import os
 
 # ls(path) {{{
-def ls(path):
+def ls(path: str) -> list:
     """get current directory's entries and return list
 
        Args:

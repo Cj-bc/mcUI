@@ -1,14 +1,19 @@
 import re
 import os
+from typing import Tuple, List
+
 import commands
-from entry import Pane
+from entry import Pane, Session
 from util import direction, get_abspath
+from mcpi.vec3 import Vec3
+import mcpi.minecraft as minecraft
+from mcpi.event import ChatEvent
 
 class ChatCommand():
     """ Treat chat command from Minecraft
     """
     @staticmethod
-    def run_chat_command(mc, session, events, entity_id):
+    def run_chat_command(mc: minecraft.Minecraft, session: Session, events: List[ChatEvent], entity_id: int) -> tuple:
         """ Run detected chat command from list 'events', spoken by 'entity_id'
 
             Args:
@@ -48,7 +53,7 @@ class ChatCommand():
                 return (None, None)
 
 
-    def cat(mc, pathes):
+    def cat(mc: minecraft.Minecraft, pathes: List[str]) -> Tuple[Pane, bool]:
         """ Catinate 'path' files to Chat
 
             Args:
@@ -62,7 +67,7 @@ class ChatCommand():
 
         return (None, None)
 
-    def cd(session, pathes):
+    def cd(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
         """ execute 'cd' and chnage current dir
         """
         pane = session.panes[0] # TODO: shoulb be changed to support multi pane
@@ -72,21 +77,21 @@ class ChatCommand():
                     pos=pane.pos, face_to=pane.face_to), False)
 
 
-    def cp(session, *pathes):
+    def cp(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
 
-    def exit(session, *argv):
+    def exit(session: Session, argv: List[str]) -> Tuple[Pane, bool]:
         """ Exit mcUI process
         """
         session.is_end = True
         return (None, None)
 
-    def help(*path):
+    def help(path: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
 
-    def ls(session, pathes):
+    def ls(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
         """ execute ls in 'path'
 
             Args:
@@ -101,25 +106,25 @@ class ChatCommand():
         return (Pane(path=new_path, entries=commands.ls(new_path),
                     pos=pane.pos, face_to=pane.face_to), True)
 
-    def man(*argv):
+    def man(argv: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
 
-    def mv(session, pathes):
+    def mv(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
 
-    def pwd(mc, session):
+    def pwd(mc: minecraft.Minecraft, session: Session) -> Tuple[Pane, bool]:
         """ Echo pwd to Chat
         """
         mc.postToChat(f'pwd: {session.panes[0].path}')
         return (None, None)
 
-    def rm(*pathes):
+    def rm(pathes: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
 
-    def pane(mc, session, argv):
+    def pane(mc: minecraft.Minecraft, session: Session, argv: List[str]) -> Tuple[Pane, bool]:
         """ Manage panes
 
             This command has subcommands:
@@ -174,6 +179,6 @@ class ChatCommand():
 
         return (None, None)
 
-    def reload(*argv):
+    def reload(argv: List[str]) -> Tuple[Pane, bool]:
         pass
         return (None, None)
