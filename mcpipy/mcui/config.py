@@ -32,7 +32,7 @@ filetype_list = {"": "text",
                  ".exe": "windows-executable",
                  ".swp": "vim-swap-file",
                  ".swo": "vim-swap-file",
-                 ".pyc": "python-cash"
+                 ".pyc": "python-cache"
                 }
 
 # Define what block should be used for each filetype
@@ -58,7 +58,7 @@ schema = {"file": block.WOOL,
           "cpp": block.WOOD_PLANKS,
           "windows-executable": block.DIRT_PODZOL,
           "vim-swap-file": block.WOOD_PLANKS_ACACIA,
-          "python-cash": block.WOOD_PLANKS_ACACIA,
+          "python-cache": block.WOOD_PLANKS_ACACIA,
           "unknown": block.DIRT}
 
 # }}}
