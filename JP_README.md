@@ -23,6 +23,27 @@ English -> [README.md](https://github.com/Cj-bc/mcUI/blob/master/README.md)
   * CUIをGUI、そしてmcUIへ-- 次世代型（ぽい）3DのUIを提供します（でも開発者はCUIが好きです）
   * Minecraftのmodとしては特異なることとして、(Jam modが動作すれば)マイクラのバージョンなんざ関係ありません！
 
+## 進捗
+
+  * カレントディレクトリのエントリ表示(mcUI.pyを実行してください)
+  * 多彩なコンフィグ([config.py](mcpipy/mcui/config.py)を参照)
+  * ファイルタイプ(現状は拡張子からの判定)に応じて表示するブロックを変更
+  * ファイルタイプは拡張可能。対応するブロックも変更可能
+  * 様々なチャットコマンド。チャット欄でタイプするだけで実行されます
+    -  [x] `cat`     ---  'cat' コマンドの結果をMinecraftのチャット欄に出力
+    -  [x] `cd`      ---  pane 0のカレントディレクトリを変更
+    -  [ ] `cp`      ---  `cp`を実行
+    -  [x] `exit`    ---  mcUIを終了。mcUIで作成されたブロック等は片付けられます。
+    -  [ ] `help`    ---  mcUIのヘルプを表示
+    -  [x] `ls`      --- `ls`を実行し、結果を新しいpaneに保存
+    -  [ ] `man`     ---  'man'を実行
+    -  [ ] `mv`      ---  'mv <file> <dst>'を実行
+    -  [x] `pane`    ---  paneを管理します。サブコマンド: `create`/`mv`/`deactivate`/`activate`/`list`
+    -  [x] `pwd`     ---  pane 0のカレントディレクトリを表示
+    -  [ ] `reload`  ---  リロード
+    -  [ ] `rm`      ---  `rm`を実行
+
+
 # 必要なものたち
 
   上記の通り、バージョンは統一してあれば問題ありません！

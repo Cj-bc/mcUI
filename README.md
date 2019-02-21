@@ -21,6 +21,25 @@
   * CUI,GUI, then why not mcUI! (But I like CUI
   * No need to care about MC version.
 
+## Currect progress
+
+  * Display current directory's entries(execute mcUI.py)
+  * Configurable variables(please refer to [config.py](mcpipy/mcui/config.py))
+  * useful chat commands. Just type in Chat to execute
+    -  [x] `cat`     ---  Execute 'cat <file>' but output goes to Minecraft Chat.
+    -  [x] `cd`      ---  Change directory of pane 0
+    -  [ ] `cp`      ---  execute `cp`
+    -  [x] `exit`    ---  Exit mcUI. Clean mcUI contents from Minecraft.
+    -  [ ] `help`    ---  Show help of mcUI
+    -  [x] `ls`      ---  display speccfied path entries in new pane
+    -  [ ] `man`     ---  execute 'man'
+    -  [ ] `mv`      ---  execute 'mv <file> <dst>'
+    -  [x] `pane`    ---  Manage pane. subcommands: `create`/`mv`/`deactivate`/`activate`/`list`
+    -  [x] `pwd`     ---  Show currect path in Chat
+    -  [ ] `reload`  ---  Reload 
+    -  [ ] `rm`      ---  execute `rm`
+
+
 # dependences
 
   You'll need
