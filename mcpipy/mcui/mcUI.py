@@ -9,25 +9,60 @@
 # (@)   run this script while Minecraft is running.
 
 import os
+import time
 
 import mcpi.minecraft as minecraft
 from mcpi.vec3 import Vec3
 from entry import Pane
 from util import *
 from commands import ls
+from chat_event import ChatCommand
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE
+from entry import Session
 
 
+# Initialize
 mc = minecraft.Minecraft()
 pwd = os.getcwd()
-
 spawn_object_criteria = mc.player.getPos()
+player_allowed_use_command = mc.getPlayerEntityIds()
 spawn_object_direction_criteria = direction(mc.player.getRotation())
 
 mc.postToChat(f'pwd: {pwd}')
 
-pane = Pane(entries=ls(pwd), pos=spawn_object_criteria, face_to=spawn_object_direction_criteria)
-for entry, pos in zip(pane.entries,calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
-    entry.savePos(pos)
+the_session = Session()
+the_session.add_pane(Pane(path=pwd, entries=ls(pwd), pos=spawn_object_criteria, face_to=spawn_object_direction_criteria))
 
-write_pane(mc, pane)
+
+while not the_session.is_end:
+    # Update Minecraft condition
+    for pane in the_session.gabage:
+        remove_pane(mc, pane)
+
+    for pane in the_session.panes:
+        for entry, pos in zip(pane.entries,
+                              calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
+            entry.savePos(pos)
+
+        reload_pane(mc, pane)
+
+
+    # Wait 'till user input
+    user_input = []
+    while user_input == []:
+        user_input = mc.events.pollChatPosts()
+        time.sleep(1)
+
+    ret_pane, is_new = ChatCommand.run_chat_command(mc, the_session, user_input, player_allowed_use_command)
+    if ret_pane is not None:
+        if is_new:
+            the_session.add_pane(ret_pane)
+        elif not is_new:
+            the_session.update_pane(0, ret_pane)
+
+
+mc.postToChat('removing mcUI...')
+for pane in the_session.panes:
+    remove_pane(mc, pane)
+
+mc.postToChat('Done.')

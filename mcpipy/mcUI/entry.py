@@ -36,6 +36,7 @@ class Entry:
             Args:
                 DirEntry (os.DirEntry): DirEntry to convert to Entry
         """
+        self.nameEntityId = 0
         self.symlink = True if DirEntry.is_symlink() else False
         self.filename = DirEntry.name
 
@@ -82,19 +83,24 @@ class Pane:
             entries (list of Entry): entries that is sotred in the pane
             pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
             face_to (string): direction taht Pane face to. north/south/west/east
+            path (string): path of parent directory of entries
+            active (bool): Whether this pane will be displayed in Minecraft
     """
     
-    def __init__(self, entries, pos, face_to):
+    def __init__(self, path, entries, pos, face_to, active=True):
         """ Initialize Pane
             
             Args:
                 entries (list of Entry): entries that is sotred in the pane
                 pos (vec3.Vec3): Vec3 that poits where is the left bottom of this pane.
                 face_to (string): direction taht Pane face to. north/south/west/east
+                path (string): path of parent directory of entries
         """
+        self.path = path
         self.entries = entries
         self.pos = pos
         self.face_to = face_to
+        self.active = active
 
     def get_entries(self):
         """ generator for Entries
@@ -102,3 +108,42 @@ class Pane:
         for ent in self.entries:
             yield ent
 
+
+
+
+class Session:
+    """ Manage all state of mcUI
+
+        This should be created only once
+
+        Args:
+            panes (list of Pane): contains panes
+            is_end (bool): False while the session is alive
+            gabage (list of Pane): gabage panes(should be removed in next remove_pane)
+    """
+
+    def __init__(self):
+        """ Initialize session
+        """
+        self.panes = []
+        self.gabage = []
+        self.is_end = False
+
+
+    def add_pane(self, pane):
+        """ Add pane 'pane' to session's pane
+
+            Args:
+                pane (Pane): pane to add
+        """
+        self.panes += [pane]
+
+    def update_pane(self, index, pane):
+        """ Update panes['index'] to 'pane'
+
+            Args:
+                pane (Pane): pane object to update to
+                index (int): index of pane to update
+        """
+        self.gabage += [self.panes[index]]
+        self.panes[index] = pane

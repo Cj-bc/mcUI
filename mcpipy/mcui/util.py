@@ -2,6 +2,8 @@ import mcpi.entity as entity
 from mcpi.vec3 import Vec3
 import mcpi.block as block
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE, schema
+import os
+import re
 
 
 # get_schemas() {{{
@@ -54,6 +56,8 @@ def write_pane(mc, pane):
             no return
     """
     schemas = schema
+    if pane.active != True:
+        return
 
     for entry in pane.entries:
         mc.setBlock(entry.pos.x, entry.pos.y, entry.pos.z, schemas[entry.filetype])
@@ -64,6 +68,7 @@ def write_pane(mc, pane):
 # }}}
 
 
+# calc_entries_coordinate(pane, padding, line_vector, line_max){{{
 def calc_entries_coordinate(pane, padding, line_vector, line_max):
     """ calculate entries coordinate in Minecraft
 
@@ -135,8 +140,10 @@ def calc_entries_coordinate(pane, padding, line_vector, line_max):
             ret.append(spawn_pos)
 
     return ret
+# }}}
 
 
+# remove_pane(mc, pane){{{
 def remove_pane(mc, pane):
     """ Remove 'pane' from Minecraft
 
@@ -148,8 +155,10 @@ def remove_pane(mc, pane):
     for ent in pane.get_entries():
         mc.setBlock(ent.pos.x, ent.pos.y, ent.pos.z, block.AIR)
         mc.removeEntity(ent.nameEntityId)
+# }}}
 
 
+# reload_pane(mc, pane){{{
 def reload_pane(mc, pane):
     """ Re-construct pane in Minecraft
 
@@ -160,3 +169,27 @@ def reload_pane(mc, pane):
 
     remove_pane(mc, pane)
     write_pane(mc, pane)
+# }}}
+
+
+# get_abspath(path, base_path){{{
+def get_abspath(path, base_path):
+    """ Return absolute path of 'path'
+
+        If 'path' is already absolute path, Return 'path' itself
+        If 'path' contains '~', expand it and return absolute path
+
+        Args:
+            path (str): path to get absolute path
+            base_path (str): base path(pwd)
+
+        Returns:
+            abspath (str): absolute path for 'path'
+    """
+    regex_abspath = r'^/.*'
+    regex_fromhome = r'^~/.*'
+    if re.match(regex_abspath, path) or re.match(regex_fromhome, path):
+        return os.path.expanduser(path)
+    else:
+        return base_path + '/' + path
+# }}}
