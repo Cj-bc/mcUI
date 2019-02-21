@@ -170,7 +170,10 @@ class ChatCommand():
             return (Pane(path=pane.path, entries=pane.entries,
                          pos=pane.pos, face_to=pane.face_to, active=True), False)
         elif argv[0] == "list":
-            mc.postToChat(f'panes: {session.panes}')
+            for i, pane in  enumerate(session.panes):
+                active = "Active" if pane.active else "Inactive"
+                mc.postToChat(f'pane[{i}]  || path: {pane.path}  || {active}')
+
             return (None, None)
         else:
             return (None, None)
