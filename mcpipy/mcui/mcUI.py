@@ -4,7 +4,7 @@
 #
 # copyright (c) 2019 Cj-bc a.k.a Cj.bc_sd
 #
-# (@) version: 0.2.0
+# (@) version: 0.3.0
 # (@) usage:
 # (@)   run this script while Minecraft is running.
 
