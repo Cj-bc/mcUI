@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # [version] - YYYY/MM/DD
 
+# 0.3.2 - 2019/02/22
+## Changed
+	* Write CHANGELOG for 0.3.1
+
+# 0.3.1 - 2019/02/22
+## Fixed
+	* specify which pane to update after ChatCommand execution
+
 # 0.3.0 - 2019/02/21
 ## Added
 	* chat_event.py -- contains ChatCommand class
