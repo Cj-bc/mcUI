@@ -27,7 +27,7 @@ class ChatCommand():
             if words[0] == 'cat':
                 return ChatCommand.cat(mc, words[1:])
             elif words[0] == 'cd':
-                return ChatCommand.cd(session, words[1:])
+                return ChatCommand.cd(session, int(words[1]), words[2:])
             elif words[0] == 'cp':
                 return ChatCommand.cp(session, words[1:])
             elif words[0] == 'exit':
@@ -53,7 +53,7 @@ class ChatCommand():
                 return (None, None)
 
 
-    def cat(mc: minecraft.Minecraft, pathes: List[str]) -> Tuple[Pane, bool]:
+    def cat(mc: minecraft.Minecraft, pathes: List[str]) -> Tuple[None, None, None]:
         """ Catinate 'path' files to Chat
 
             Args:
@@ -65,33 +65,36 @@ class ChatCommand():
             with open(path,'r') as f:
                 mc.postToChat(f.read())
 
-        return (None, None)
+        return (None, None, None)
 
-    def cd(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
+    def cd(session: Session, index: int, argv: List[str]) -> Tuple[Pane, bool, int]:
         """ execute 'cd' and chnage current dir
         """
-        pane = session.panes[0] # TODO: shoulb be changed to support multi pane
-        new_path = get_abspath(pathes[0], pane.path) if len(pathes) != 0 else pane.path
+        if index > len(session.panes):
+            return (None, None, None)
+
+        pane = session.panes[index] # TODO: shoulb be changed to support multi pane
+        new_path = get_abspath(pathes[0], pane.path) if len(argv[1]) != 0 else pane.path
 
         return (Pane(path=new_path, entries=commands.ls(new_path),
-                    pos=pane.pos, face_to=pane.face_to), False)
+                    pos=pane.pos, face_to=pane.face_to), False, index)
 
 
-    def cp(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
+    def cp(session: Session, pathes: List[str]) -> Tuple[Pane, bool, int]:
         pass
-        return (None, None)
+        return (None, None, None)
 
-    def exit(session: Session, argv: List[str]) -> Tuple[Pane, bool]:
+    def exit(session: Session, argv: List[str]) -> Tuple[None, None, None]:
         """ Exit mcUI process
         """
         session.is_end = True
-        return (None, None)
+        return (None, None, None)
 
-    def help(path: List[str]) -> Tuple[Pane, bool]:
+    def help(path: List[str]) -> Tuple[None, None, None]:
         pass
-        return (None, None)
+        return (None, None, None)
 
-    def ls(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
+    def ls(session: Session, pathes: List[str]) -> Tuple[Pane, bool, None]:
         """ execute ls in 'path'
 
             Args:
@@ -100,31 +103,34 @@ class ChatCommand():
             Return:
                 new_pane (Pane): new(Updated) Pane
         """
-        pane = session.panes[0]
+        # TODO: I take the last pane as the base of 'ls' start.
+        # This is not good, 'cuz there's no clue user always focus on the latest pane.
+        # I should fix it, but I have no good idea for now. This is an issue.
+        pane = session.panes[-1]
         new_path = get_abspath(pathes[0], pane.path) if len(pathes) != 0 else pane.path
 
         return (Pane(path=new_path, entries=commands.ls(new_path),
-                    pos=pane.pos, face_to=pane.face_to), True)
+                    pos=pane.pos, face_to=pane.face_to), True, None)
 
-    def man(argv: List[str]) -> Tuple[Pane, bool]:
+    def man(argv: List[str]) -> Tuple[None, None, None]:
         pass
-        return (None, None)
+        return (None, None, None)
 
-    def mv(session: Session, pathes: List[str]) -> Tuple[Pane, bool]:
+    def mv(session: Session, pathes: List[str]) -> Tuple[Pane, bool, int]:
         pass
-        return (None, None)
+        return (None, None, None)
 
-    def pwd(mc: minecraft.Minecraft, session: Session) -> Tuple[Pane, bool]:
+    def pwd(mc: minecraft.Minecraft, session: Session) -> Tuple[None, None, None]:
         """ Echo pwd to Chat
         """
-        mc.postToChat(f'pwd: {session.panes[0].path}')
-        return (None, None)
+        mc.postToChat(f'{session.panes[0].path}')
+        return (None, None, None)
 
-    def rm(pathes: List[str]) -> Tuple[Pane, bool]:
+    def rm(pathes: List[str]) -> Tuple[Pane, bool, int]:
         pass
-        return (None, None)
+        return (None, None, None)
 
-    def pane(mc: minecraft.Minecraft, session: Session, argv: List[str]) -> Tuple[Pane, bool]:
+    def pane(mc: minecraft.Minecraft, session: Session, argv: List[str]) -> Tuple[Pane, bool, int]:
         """ Manage panes
 
             This command has subcommands:
@@ -136,13 +142,13 @@ class ChatCommand():
         """
         if argv[0] == "create":
             if not os.path.isdir(argv[1]):
-                return (None, None)
+                return (None, None, None)
 
             return (Pane(path=argv[1], entries=commands.ls(argv[1]),
-                         pos=mc.player.getPos(), face_to=direction(mc.player.getRotate())), True)
+                         pos=mc.player.getPos(), face_to=direction(mc.player.getRotate())), True, None)
         elif argv[0] == "move":
             if int(argv[1]) > len(session.panes):
-                return (None, None)
+                return (None, None, None)
 
             index = int(argv[1])
             x = int(argv[2])
@@ -152,36 +158,36 @@ class ChatCommand():
 
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
-                         pos=pane.pos + addition, face_to=pane.face_to), False)
+                         pos=pane.pos + addition, face_to=pane.face_to), False, index)
         elif argv[0] == "deactivate":
             if int(argv[1]) > len(session.panes):
-                return (None, None)
+                return (None, None, None)
 
             index = int(argv[1])
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
-                         pos=pane.pos, face_to=pane.face_to, active=False), False)
+                         pos=pane.pos, face_to=pane.face_to, active=False), False, index)
         elif argv[0] == "activate":
             if int(argv[1]) > len(session.panes):
-                return (None, None)
+                return (None, None, None)
 
             index = int(argv[1])
             pane = session.panes[index]
             return (Pane(path=pane.path, entries=pane.entries,
-                         pos=pane.pos, face_to=pane.face_to, active=True), False)
+                         pos=pane.pos, face_to=pane.face_to, active=True), False, index)
         elif argv[0] == "list":
             for i, pane in  enumerate(session.panes):
                 active = "Active" if pane.active else "Inactive"
                 mc.postToChat(f'pane[{i}]  || path: {pane.path}  || {active}')
 
-            return (None, None)
+            return (None, None, None)
         else:
-            return (None, None)
+            return (None, None, None)
 
 
 
-        return (None, None)
+        return (None, None, None)
 
-    def reload(argv: List[str]) -> Tuple[Pane, bool]:
+    def reload(argv: List[str]) -> Tuple[Pane, bool, None]:
         pass
-        return (None, None)
+        return (None, None, None)

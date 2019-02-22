@@ -53,12 +53,12 @@ while not the_session.is_end:
         user_input = mc.events.pollChatPosts()
         time.sleep(1)
 
-    ret_pane, is_new = ChatCommand.run_chat_command(mc, the_session, user_input, player_allowed_use_command)
+    ret_pane, is_new, pane_id = ChatCommand.run_chat_command(mc, the_session, user_input, player_allowed_use_command)
     if ret_pane is not None:
         if is_new:
             the_session.add_pane(ret_pane)
         elif not is_new:
-            the_session.update_pane(0, ret_pane)
+            the_session.update_pane(pane_id, ret_pane)
 
 
 mc.postToChat('removing mcUI...')
