@@ -19,6 +19,7 @@ from commands import ls
 from chat_event import ChatCommand
 from config import margin, padding, line_vec, MAX_OBJECT_PER_LINE
 from entry import Session
+from Render import Renderer
 
 
 # Initialize
@@ -33,18 +34,24 @@ mc.postToChat(f'pwd: {pwd}')
 the_session = Session()
 the_session.add_pane(Pane(path=pwd, entries=ls(pwd), pos=spawn_object_criteria, face_to=spawn_object_direction_criteria))
 
+renderer = Renderer(mc, the_session)
+
 
 while not the_session.is_end:
     # Update Minecraft condition
-    for pane in the_session.gabage:
-        remove_pane(mc, pane)
+    renderer.render()
 
-    for pane in the_session.panes:
-        for entry, pos in zip(pane.entries,
-                              calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
-            entry.savePos(pos)
+    # Those codes below should be moved to Renderer.render
+    #
+    # for pane in the_session.gabage:
+    #     remove_pane(mc, pane)
 
-        reload_pane(mc, pane)
+    # for pane in the_session.panes:
+    #     for entry, pos in zip(pane.entries,
+    #                           calc_entries_coordinate(pane, padding, line_vec, MAX_OBJECT_PER_LINE)):
+    #         entry.savePos(pos)
+
+    #     reload_pane(mc, pane)
 
 
     # Wait 'till user input
