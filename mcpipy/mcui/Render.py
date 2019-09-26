@@ -11,3 +11,14 @@ class Renderer:
     def render(self):
     """ Render Session to Minecraft world. """
     pass
+
+
+def diff(prev: Sesssion, new: Session) -> Tuple[Pane, Pane]:
+    """Pick up changed panes and return them as one list
+    """
+    added: List[Pane]   = filter(lambda p: not p in prev.panes, new.panes)
+    rmv_tmp: List[Pane] = filter(lambda p: not p in new.panes, prev.panes)
+    removed: List[Pane] = map(lambda p: map(lambda e: e.setNoBlock(), p.entries)
+                 , rmv_tmp)
+    return (added, removed)
+
