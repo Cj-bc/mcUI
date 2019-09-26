@@ -83,6 +83,7 @@ class Pane:
         Plese imagine tmux pane
 
         Args:
+            id (int): Pane ID that is unique to all panes
             entries (list of Entry): entries that is sotred in the pane
             pos (Vec3): Vec3 that poits where is the left bottom of this pane.
             face_to (string): direction taht Pane face to. north/south/west/east
@@ -90,7 +91,7 @@ class Pane:
             active (bool): Whether this pane will be displayed in Minecraft
     """
     
-    def __init__(self, path: str, entries: List[Entry], pos: Vec3, face_to: str, active: bool=True) -> None:
+    def __init__(self, _id: int, path: str, entries: List[Entry], pos: Vec3, face_to: str, active: bool=True) -> None:
         """ Initialize Pane
             
             Args:
@@ -99,11 +100,15 @@ class Pane:
                 face_to (string): direction taht Pane face to. north/south/west/east
                 path (string): path of parent directory of entries
         """
+        self.id = _id
         self.path = path
         self.entries = entries
         self.pos = pos
         self.face_to = face_to
         self.active = active
+
+    def __eq__(self, other):
+        return self.id == other.id
 
     def get_entries(self) -> None:
         """ generator for Entries
