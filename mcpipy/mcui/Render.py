@@ -8,6 +8,6 @@ class Renderer:
         self.minecraft = _mc
         self.session = sc
 
-    def render():
+    def render(self):
     """ Render Session to Minecraft world. """
     pass
